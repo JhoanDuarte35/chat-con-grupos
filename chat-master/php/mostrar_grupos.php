@@ -2,6 +2,7 @@
 session_start();
 include_once "config.php";
 $outgoing_id = $_SESSION['unique_id'];
+$output = "";
 $sql2 = mysqli_query($conn, "SELECT * FROM grupo_integrante WHERE id_usuario = '{$outgoing_id}'");
 $row = mysqli_fetch_assoc($sql2);
 if(mysqli_num_rows($sql2) == 0){
@@ -24,8 +25,8 @@ if(mysqli_num_rows($sql2) == 0){
     </a>
 </div>';
 }
-echo $output;
 }
+echo $output;
 
 
     ?>

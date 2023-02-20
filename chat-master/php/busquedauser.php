@@ -5,6 +5,7 @@
     if(!isset($_POST['id_user_group'])){
     $outgoing_id = $_SESSION['unique_id'];
     $searchTerm = mysqli_real_escape_string($conn, $_POST['searchTerm']);
+    $contador = mysqli_real_escape_string($conn, $_POST['contador']);
 
     $sql = "SELECT * FROM users WHERE NOT unique_id = {$outgoing_id} AND (fname LIKE '%{$searchTerm}%' OR lname LIKE '%{$searchTerm}%') ";
     $output = "";

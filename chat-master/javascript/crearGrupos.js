@@ -38,8 +38,11 @@ searchBar.onkeyup = ()=>{
 
 
     var array=[];
+    var contador=0;
 
 function myfuncion(id){
+    contador ++;
+    console.log(contador);
     alert(id);
     let pos = array.indexOf(id);
     if(array[pos]==id){
@@ -62,15 +65,21 @@ function myfuncion(id){
       }
     }
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("id_user_group=" + id_user_group);
+    xhr.send("id_user_group=" + id_user_group, "contador=" + contador);
 }
 
 
     function borraruser(id){
+      let pos = 0;
       alert(id);
-      let pos = array.indexOf(id);
-      array.splice(0, pos);
-      console.log(array); 
+      pos = array.indexOf(id);
+      if(array[pos]==id){
+        array.splice(pos, 1);
+        console.log(array); 
+      }else{
+        console.log(array); 
+      }
+      
     }
 
     $(document).ready(function(){
