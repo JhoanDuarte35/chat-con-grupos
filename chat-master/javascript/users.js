@@ -1,6 +1,7 @@
 const searchBar = document.querySelector(".search input"),
 searchIcon = document.querySelector(".search button"),
 usersList = document.querySelector(".users-list");
+listagrupos = document.querySelector(".lista-grupos");
 
 searchIcon.onclick = ()=>{
   searchBar.classList.toggle("show");
@@ -34,6 +35,17 @@ searchBar.onkeyup = ()=>{
 }
 
 setInterval(() =>{
+  let xhr2 = new XMLHttpRequest();
+  xhr2.open("GET", "php/mostrar_grupos.php", true);
+  xhr2.onload = ()=>{
+    if(xhr2.readyState === XMLHttpRequest.DONE){
+        if(xhr2.status === 200){
+          let data2 = xhr2.response;
+            listagrupos.innerHTML = data2;
+        }
+    }
+  }
+  xhr2.send();
   let xhr = new XMLHttpRequest();
   xhr.open("GET", "php/users.php", true);
   xhr.onload = ()=>{
@@ -47,5 +59,7 @@ setInterval(() =>{
     }
   }
   xhr.send();
+
 }, 500);
+
 

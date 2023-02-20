@@ -35,21 +35,7 @@ searchBar.onkeyup = ()=>{
   xhr.send("searchTerm=" + searchTerm);
 }
 
-setInterval(() =>{
-  let xhr = new XMLHttpRequest();
-  xhr.open("GET", "php/users-grup.php", true);
-  xhr.onload = ()=>{
-    if(xhr.readyState === XMLHttpRequest.DONE){
-        if(xhr.status === 200){
-          let data = xhr.response;
-          if(!searchBar.classList.contains("active")){
-            usersList.innerHTML = data;
-          }
-        }
-    }
-  }
-  xhr.send();
-}, 500);
+
 
     var array=[];
 
@@ -78,4 +64,44 @@ function myfuncion(id){
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("id_user_group=" + id_user_group);
 }
+
+
+    function borraruser(id){
+      alert(id);
+      let pos = array.indexOf(id);
+      array.splice(0, pos);
+      console.log(array); 
+    }
+
+    $(document).ready(function(){
+      $("#crear").submit(function(event){
+        event.preventDefault();
+        $.ajax({
+            dataType:"json",
+            url:"php/grupos-guardar.php",
+            type:"POST",
+            data:{nombre:$("#nombre").val(), array: JSON.stringify(array)},
+            success: function(data){
+                if(data.success==false){
+                    $("#mensaje").show();
+                    $("#mensaje").html(data.msg);
+                    $('.log-status').addClass('wrong-entry');
+                    $('.alert').fadeIn(700);
+                setTimeout( "$('.alert').fadeOut(1800);",1500 );
+                }else{
+                    window.location=data.link;
+                }
+            },
+                error: function(response) {
+                    $("#mensaje").show();
+                    $("#mensaje").html(response.responseText);
+                }
+        });
+    });
+    $('.form-control').keypress(function(){
+        $('.log-status').removeClass('wrong-entry');
+    });
+  })
+
+
 

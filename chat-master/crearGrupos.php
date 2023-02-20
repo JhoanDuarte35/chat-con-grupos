@@ -31,6 +31,9 @@ if (!isset($_SESSION['unique_id'])) {
       <div class="users-list-group">
         
 
+  
+      
+
       </div>
   
       <div class="search">
@@ -40,13 +43,44 @@ if (!isset($_SESSION['unique_id'])) {
       </div>
       <div class="users-list">
 
+      <?php
+        include_once "php/config.php";
+        $outgoing_id = $_SESSION['unique_id'];
+        $sql = "SELECT * FROM users WHERE NOT unique_id = {$outgoing_id} ORDER BY user_id DESC";
+        $query = mysqli_query($conn, $sql);
+       // $row = mysqli_fetch_assoc($query);
+        ?>
+        <?php
+            foreach($query as $value){  ?>
+                    <div class="users-list">
+     
+                        <a id="<?php echo $value['unique_id']?>">
+                            <div class="content">
+                            <img src="php/images/<?php echo $value['img']?>" alt="">
+                            <div class="details">
+                                <span><?php echo $value['fname'] . $value['lname']?></span>
+                            </div>
+                            </div>
+                            <div> 
+                            <button class="btn btn-outline-success" id="<?php echo $value['unique_id']?>" onclick="myfuncion(this.id)"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </a>
+                        </div>
+                        <?php 
+        }
+        ?>
+
       </div>
-      <form action="" type="POST">
-      <input type="text" placeholder="Nombre del grupo">
-      <input type="submit" value="Crear Grupo">
-      </form>
+  
     </section>
+    <form id="crear">
+          <input type="text" placeholder="Nombre del grupo" id="nombre" require>
+          <input type="submit" id="boton" value="Crear Grupo">
+      <div align="center" class="alert" id="mensaje"></div>
+      </form>
   </div>
+  
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <script src="javascript/crearGrupos.js"></script>
 

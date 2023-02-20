@@ -16,15 +16,24 @@ if (!isset($_SESSION['unique_id'])) {
         $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$user_id}");
         if (mysqli_num_rows($sql) > 0) {
           $row = mysqli_fetch_assoc($sql);
-        } else {
-          header("location: users.php");
-        }
-        ?>
+          ?>
         <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-        <img src="php/images/<?php echo $row['img']; ?>" alt="">
-        <div class="details">
+          <img src="php/images/<?php echo $row['img']; ?>" alt="">
+          <div class="details">
           <span><?php echo $row['fname'] . " " . $row['lname'] ?></span>
           <p><?php echo $row['status']; ?></p>
+        <?php 
+        } else {
+
+          $sql2 = mysqli_query($conn, "SELECT * FROM grupos WHERE id_grupo = {$user_id}");
+          $row = mysqli_fetch_assoc($sql2); ?>
+          <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+          <img src="php/images/<?php echo $row['img']; ?>" alt="">
+          <div class="details">
+          <span><?php echo $row['ngrupo']?></span>
+        <?php }
+        ?>
+        
         </div>
       </header>
       <div class="chat-box">

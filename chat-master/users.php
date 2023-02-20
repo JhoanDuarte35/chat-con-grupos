@@ -27,6 +27,12 @@ if (!isset($_SESSION['unique_id'])) {
         </div>
         <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Cerrar Sesión</a>
       </header>
+        <span class="text">Tus grupos</span>
+      <div class="lista-grupos">
+          
+
+      </div>
+
       <div class="search">
         <span class="text">Selecciona un usuario para iniciar el chat</span>
         <input type="text" placeholder="Enter name to search...">
