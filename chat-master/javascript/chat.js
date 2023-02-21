@@ -3,6 +3,7 @@ incoming_id = form.querySelector(".incoming_id").value,
 inputField = form.querySelector(".input-field"),
 sendBtn = form.querySelector("button"),
 chatBox = document.querySelector(".chat-box");
+inputima = document.getElementById("file-input");
 
 form.onsubmit = (e)=>{
     e.preventDefault();
@@ -24,11 +25,14 @@ sendBtn.onclick = ()=>{
       if(xhr.readyState === XMLHttpRequest.DONE){
           if(xhr.status === 200){
               inputField.value = "";
+              document.getElementById('file-input').value ='';
+              document.getElementById('add_labels').innerHTML="";
               scrollToBottom();
           }
       }
     }
     let formData = new FormData(form);
+    console.log(formData);
     xhr.send(formData);
 }
 chatBox.onmouseenter = ()=>{
@@ -61,3 +65,23 @@ function scrollToBottom(){
     chatBox.scrollTop = chatBox.scrollHeight;
   }
   
+document.getElementById("inputima").addEventListener('click', function() {
+    document.getElementById("file-input").click();
+});
+
+document.getElementById("file-input").addEventListener('change', function() {
+    let pos = this.files.length - 1;
+    document.getElementById('add_labels').innerHTML="";
+    document.getElementById("add_labels").innerHTML += `<div class="details">${this.files[pos].name} 
+    <button onclick="limpiar()">x</button></div>`;
+    sendBtn.classList.add("active");
+});
+
+function limpiar(){
+    console.log("limpiar");
+    sendBtn.classList.remove("active");
+    document.getElementById('file-input').value ='';
+    document.getElementById('add_labels').innerHTML="";
+
+        
+}

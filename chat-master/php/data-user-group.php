@@ -32,7 +32,7 @@
             while ($row = mysqli_fetch_assoc($query3)) {
                 $output .= '
                 <div class="users-list">
-                    <a>
+                    <a id="'.$row['unique_id'].'">
                     <div class="content">
                     <img src="php/images/' . $row['img'] . '" alt="">
                     <div class="details">

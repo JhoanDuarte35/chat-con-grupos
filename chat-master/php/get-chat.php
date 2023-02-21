@@ -15,11 +15,20 @@ if (isset($_SESSION['unique_id'])) {
         if (mysqli_num_rows($query3) > 0) {
             while ($row = mysqli_fetch_assoc($query3)) {
                 if ($row['outgoing_msg_id'] === $outgoing_id) {
-                    $output .= '<div class="chat outgoing">
-                                    <div class="details">
-                                        <p>' . $row['msg'] . '</p>
-                                    </div>
-                                    </div>';
+                    if($row['tipo']!=1){
+                        $output .= '<div class="chat outgoing">
+                        <div class="details">
+                            <p>' . $row['msg'] . '</p>
+                        </div>
+                        </div>';
+                    }else{
+                        $output .= '<div class="chat outgoing">
+                        <div class="details">
+                            <img id="msimg" src="php/images/chat/' . $row['imagen'] . '" alt="">
+                        </div>
+                        </div>';
+                    }
+                    
                 } else {
                     $output .= '<div class="chat incoming">
                                     <img src="php/images/' . $row['img'] . '" alt="">
@@ -50,7 +59,6 @@ if (isset($_SESSION['unique_id'])) {
         $output .= '<div class="chat incoming">
                         <img src="php/images/' . $row['img'] . '" alt="">
                         <div class="details">
-                        <span>hola</span>
                             <p>' . $row['msg'] . '</p>
                         </div>
                         </div>';

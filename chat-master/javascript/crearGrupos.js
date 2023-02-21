@@ -50,7 +50,7 @@ function myfuncion(id){
     }else{
         array.push(id);
         console.log(array); 
-        document.getElementById(id).disabled = true;
+        document.getElementById(id).remove();
     }
 
     let id_user_group = id;
@@ -82,6 +82,8 @@ function myfuncion(id){
       
     }
 
+    
+
     $(document).ready(function(){
       $("#crear").submit(function(event){
         event.preventDefault();
@@ -112,5 +114,6 @@ function myfuncion(id){
     });
   })
 
+  
 
 

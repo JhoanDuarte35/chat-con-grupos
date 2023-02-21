@@ -39,13 +39,20 @@ if (!isset($_SESSION['unique_id'])) {
       <div class="chat-box">
 
       </div>
+      <div id="add_labels"></div>
+      
       <form action="#" class="typing-area">
+        <div id="inputima"><i class="fa-solid fa-image"></i></div>
+     
+        <input id="file-input" style="display:none" type="file" name="image" accept="image/png,image/jpeg">
         <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
         <input type="text" name="message" class="input-field" placeholder="Escribe tu mensaje aquí..." autocomplete="off">
         <button><i class="fab fa-telegram-plane"></i></button>
       </form>
     </section>
   </div>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <script src="javascript/chat.js"></script>
 
