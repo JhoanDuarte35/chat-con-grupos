@@ -23,9 +23,14 @@ if (!isset($_SESSION['unique_id'])) {
             <span><?php echo $row['fname'] . " " . $row['lname'] ?></span>
             <p><?php echo $row['status']; ?></p>
           </div>
-          <a href="crearGrupos.php"><i class="fa-solid fa-user-group"></i></a>
-        </div>
-        <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Cerrar Sesión</a>
+          <div></div>
+          <div id="gruposima">
+            <a href="crearGrupos.php"><i class="fa-solid fa-user-group"></i></a>
+          </div>
+          <div></div>
+          <div>
+          <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Cerrar Sesión</a>
+          </div>
       </header>
         <span class="text">Tus grupos</span>
       <div class="lista-grupos">

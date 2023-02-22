@@ -30,6 +30,7 @@ if (isset($_SESSION['unique_id'])) {
                     }
                     
                 } else {
+                    if($row['tipo']!=1){
                     $output .= '<div class="chat incoming">
                                     <img src="php/images/' . $row['img'] . '" alt="">
                                     <div class="details">
@@ -37,7 +38,18 @@ if (isset($_SESSION['unique_id'])) {
                                         <p>' . $row['msg'] . '</p>
                                     </div>
                                     </div>';
+                }else{
+                    $output .= '<div class="chat incoming">
+                                    <img src="php/images/' . $row['img'] . '" alt="">
+                                    <div class="details">
+                                    <div class="img-nombre">
+                                    <span> ' . $row['fname'] . " " . $row['lname'] . ' </span>
+                                    <img id="msimg" src="php/images/chat/' . $row['imagen'] . '" alt="">
+                                    </div>
+                                    </div>
+                                    </div>';
                 }
+            }
             }
         }else{
             $output .= '<div class="text">No hay mensajes disponibles. Una vez que envíe el mensaje, aparecerán aquí.</div>';
@@ -50,18 +62,35 @@ if (isset($_SESSION['unique_id'])) {
         if (mysqli_num_rows($query) > 0) {
         while ($row = mysqli_fetch_assoc($query)) {
     if ($row['outgoing_msg_id'] === $outgoing_id) {
-        $output .= '<div class="chat outgoing">
-                        <div class="details">
-                            <p>' . $row['msg'] . '</p>
-                        </div>
-                        </div>';
+        if($row['tipo']!=1){
+            $output .= '<div class="chat outgoing">
+                            <div class="details">
+                                <p>' . $row['msg'] . '</p>
+                            </div>
+                            </div>';
+            }else{
+            $output .= '<div class="chat outgoing">
+                <div class="details">
+                    <img id="msimg" src="php/images/chat/' . $row['imagen'] . '" alt="">
+                </div>
+                </div>'; 
+            }
     } else {
-        $output .= '<div class="chat incoming">
-                        <img src="php/images/' . $row['img'] . '" alt="">
-                        <div class="details">
-                            <p>' . $row['msg'] . '</p>
-                        </div>
-                        </div>';
+        if($row['tipo']!=1){
+            $output .= '<div class="chat incoming">
+                            <img src="php/images/' . $row['img'] . '" alt="">
+                            <div class="details">
+                                <p>' . $row['msg'] . '</p>
+                            </div>
+                            </div>';
+        }else{
+            $output .= '<div class="chat incoming">
+                <img src="php/images/' . $row['img'] . '" alt="">
+                <div class="details">
+                <img id="msimg" src="php/images/chat/' . $row['imagen'] . '" alt="">
+                </div>
+                </div>';
+        }
     }
     }
     } else {

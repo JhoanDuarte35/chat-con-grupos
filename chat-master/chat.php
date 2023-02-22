@@ -28,7 +28,7 @@ if (!isset($_SESSION['unique_id'])) {
           $sql2 = mysqli_query($conn, "SELECT * FROM grupos WHERE id_grupo = {$user_id}");
           $row = mysqli_fetch_assoc($sql2); ?>
           <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-          <img src="php/images/<?php echo $row['img']; ?>" alt="">
+          <img src="php/images/grupo/puntual.png" alt="">
           <div class="details">
           <span><?php echo $row['ngrupo']?></span>
         <?php }

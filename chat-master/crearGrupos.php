@@ -12,6 +12,9 @@ if (!isset($_SESSION['unique_id'])) {
     <section class="users">
       <header>
         <div class="content">
+          <div id="back">
+             <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+          </div>
           <?php
           $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
           if (mysqli_num_rows($sql) > 0) {
@@ -23,7 +26,6 @@ if (!isset($_SESSION['unique_id'])) {
             <span><?php echo $row['fname'] . " " . $row['lname'] ?></span>
             <p><?php echo $row['status']; ?></p>
           </div>
-          <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
         </div>
         <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Cerrar Sesión</a>
       </header>
@@ -73,11 +75,20 @@ if (!isset($_SESSION['unique_id'])) {
       </div>
   
     </section>
-    <form id="crear">
-          <input type="text" placeholder="Nombre del grupo" id="nombre" require>
-          <input type="submit" id="boton" value="Crear Grupo">
-      <div align="center" class="alert" id="mensaje"></div>
-      </form>
+    <div id="form-crear">
+      <div id="form-crear2">
+        <form id="crear">
+          
+            <input type="text" placeholder="Nombre del grupo" id="nombre" require>
+          
+          
+            <input type="submit" class="btn-borde" id="boton" value="Crear Grupo">
+          
+          <div align="center" class="alert" id="mensaje"></div>
+        </form>
+      </div>
+    </div>
+    
   </div>
   
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

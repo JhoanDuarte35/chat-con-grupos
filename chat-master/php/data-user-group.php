@@ -13,10 +13,12 @@
             } else {
                 $you = "";
             }
-            ($row['status'] == "Fuera de Línea") ? $offline = "offline" : $offline = "";
+            ($row['status'] == "offline now") ? $offline = "offline" : $offline = "";
             ($outgoing_id == $row['unique_id']) ? $hid_me = "hide" : $hid_me = "";
         
-            $output .= '<a id="'.$row['unique_id'].'">
+            $output .= '
+                        <div class="users-list">    
+                            <a id="'.$row['unique_id'].'">
                             <div class="content">
                             <img src="php/images/' . $row['img'] . '" alt="">
                             <div class="details">
@@ -26,25 +28,44 @@
                             <div> 
                             <button class="btn btn-outline-success" id="'.$row['unique_id'].'" onclick="myfuncion(this.id)"><i class="fa-solid fa-plus"></i></button>
                             </div>
-                        </a>';
+                            </a>
+                            </div>';
         }
     }else{
             while ($row = mysqli_fetch_assoc($query3)) {
-                $output .= '
-                <div class="users-list">
-                    <a id="'.$row['unique_id'].'">
-                    <div class="content">
-                    <img src="php/images/' . $row['img'] . '" alt="">
-                    <div class="details">
-                        <span>' . $row['fname'] . " " . $row['lname'] . '</span>
-                    </div>
-                    </div>
-                    <div> 
-                    <button class="btn btn-outline" id="'.$row['unique_id'].'" onclick="borraruser(this.id)"><i class="fa-solid fa-minus"></i></button>
-                    </div>
-                    </a>
-                </div>';
 
+                if(!$estado){
+                    $output .= '
+                    <div class="users-list">
+                        <a id="'.$row['unique_id'].'">
+                        <div class="content">
+                        <img src="php/images/' . $row['img'] . '" alt="">
+                        <div class="details">
+                            <span>' . $row['fname'] . " " . $row['lname'] . '</span>
+                        </div>
+                        </div>
+                        <div> 
+                        <button class="btn btn-outline" id="'.$row['unique_id'].'" onclick="borraruser(this.id)"><i class="fa-solid fa-minus"></i></button>
+                        </div>
+                        </a>
+                    </div>';    
+                }else{
+                    $output .= '
+                        <div class="users-list">    
+                            <a id="'.$row['unique_id'].'">
+                            <div class="content">
+                            <img src="php/images/' . $row['img'] . '" alt="">
+                            <div class="details">
+                                <span>' . $row['fname'] . " " . $row['lname'] . '</span>
+                            </div>
+                            </div>
+                            <div> 
+                            <button class="btn btn-outline-success" id="'.$row['unique_id'].'" onclick="myfuncion(this.id)"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                            </a>
+                            </div>';
+                }
+                
                             }
         
     }

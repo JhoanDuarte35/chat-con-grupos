@@ -1,12 +1,11 @@
 <?php
     session_start();
     include_once "config.php";
+  
     
-    if(!isset($_POST['id_user_group'])){
+    if(!isset($_POST['x'])){
     $outgoing_id = $_SESSION['unique_id'];
     $searchTerm = mysqli_real_escape_string($conn, $_POST['searchTerm']);
-    $contador = mysqli_real_escape_string($conn, $_POST['contador']);
-
     $sql = "SELECT * FROM users WHERE NOT unique_id = {$outgoing_id} AND (fname LIKE '%{$searchTerm}%' OR lname LIKE '%{$searchTerm}%') ";
     $output = "";
     $query = mysqli_query($conn, $sql);
@@ -18,7 +17,9 @@
     echo $output;
 
     }else{
-        $id_user_group = mysqli_real_escape_string($conn, $_POST['id_user_group']);
+        $data = json_decode($_POST['x']);
+        $id_user_group = $data[0]->id_user_group;
+        $estado= $data[0]->estado;
 
         $sql3 = "SELECT * FROM users WHERE unique_id = {$id_user_group}";
         $output = "";

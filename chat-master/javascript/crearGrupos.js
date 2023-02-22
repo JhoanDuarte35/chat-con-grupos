@@ -36,13 +36,10 @@ searchBar.onkeyup = ()=>{
 }
 
 
-
     var array=[];
-    var contador=0;
 
 function myfuncion(id){
-    contador ++;
-    console.log(contador);
+
     alert(id);
     let pos = array.indexOf(id);
     if(array[pos]==id){
@@ -51,21 +48,24 @@ function myfuncion(id){
         array.push(id);
         console.log(array); 
         document.getElementById(id).remove();
-    }
 
-    let id_user_group = id;
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "php/busquedauser.php", true);
-    xhr.onload = ()=>{
+        obj = [{ "id_user_group": `${id}`, "estado": false }];
+        console.log(obj)
+        dbParam = JSON.stringify(obj);
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "php/busquedauser.php", true);
+      xhr.onload = ()=>{
       if(xhr.readyState === XMLHttpRequest.DONE){
           if(xhr.status === 200){
             let data = xhr.response;
-            usersListGroup.innerHTML = data;
+            usersListGroup.innerHTML = usersListGroup.innerHTML + data;
           }
       }
     }
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("id_user_group=" + id_user_group, "contador=" + contador);
+    xhr.send("x=" + dbParam);
+    }
+
 }
 
 
@@ -75,18 +75,42 @@ function myfuncion(id){
       pos = array.indexOf(id);
       if(array[pos]==id){
         array.splice(pos, 1);
-        console.log(array); 
+        document.getElementById(id).remove();
+        console.log(array);
+        obj = [{ "id_user_group": `${id}`, "estado": true }];
+        console.log(obj)
+        dbParam = JSON.stringify(obj);
+  
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "php/busquedauser.php", true);
+        xhr.onload = ()=>{
+      if(xhr.readyState === XMLHttpRequest.DONE){
+          if(xhr.status === 200){
+            let data = xhr.response;
+            usersList.innerHTML = usersList.innerHTML + data;
+          }
+      }
+    }
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("x=" + dbParam);
       }else{
         console.log(array); 
       }
       
     }
+    const creargrupobar = document.getElementById("#nombre");
+    botonguardar = document.querySelector('.btn-borde');
 
-    
+    if(creargrupobar != ""){
+      searchBar.classList.add("active");
+    }else{
+      searchBar.classList.remove("active");
+    }
 
     $(document).ready(function(){
       $("#crear").submit(function(event){
         event.preventDefault();
+        
         $.ajax({
             dataType:"json",
             url:"php/grupos-guardar.php",
