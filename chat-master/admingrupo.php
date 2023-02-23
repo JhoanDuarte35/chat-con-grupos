@@ -51,29 +51,45 @@ if (!isset($_SESSION['unique_id'])) {
 
       <?php
         include_once "php/config.php";
+        $idgrupo = mysqli_real_escape_string($conn, $_GET['idg']);
         $outgoing_id = $_SESSION['unique_id'];
+        $sql3 = "SELECT * FROM grupo_integrante WHERE id_grupo = {$idgrupo}";
+        $query3 = mysqli_query($conn, $sql3);
+        $row3 = mysqli_fetch_assoc($query3);
+        $data=[];
+        
+        
+
         $sql = "SELECT * FROM users WHERE NOT unique_id = {$outgoing_id} ORDER BY user_id DESC";
         $query = mysqli_query($conn, $sql);
-       // $row = mysqli_fetch_assoc($query);
+       $row = mysqli_fetch_assoc($query);
+       foreach($query as $value){
+        array_push($data, $value['unique_id']);
+        }
+        var_dump($data);
         ?>
         <?php
-            foreach($query as $value){  ?>
+            foreach($query3 as $value){
+                $indice=0;
+                $indice=array_search($value['id_usuario'], $data, true);
+                if($indice!=0){
+                ?>
                     <div class="users-list">
      
-                        <a id="<?php echo $value['unique_id']?>">
+                        <a id="<?php echo $row['unique_id']?>">
                             <div class="content">
-                            <img src="php/images/<?php echo $value['img']?>" alt="">
+                            <img src="php/images/<?php echo $row['img']?>" alt="">
                             <div class="details">
-                                <span><?php echo $value['fname'] . $value['lname']?></span>
+                                <span><?php echo $row['fname'] . $row['lname']?></span>
                             </div>
                             </div>
                             <div> 
-                            <button class="btn btn-outline-success" id="<?php echo $value['unique_id']?>" onclick="myfuncion(this.id)"><i class="fa-solid fa-plus"></i></button>
+                            <button class="btn btn-outline-success" id="<?php echo $row['unique_id']?>" onclick="myfuncion(this.id)"><i class="fa-solid fa-plus"></i></button>
                             </div>
                         </a>
                         </div>
                         <?php 
-        }
+        }}
         ?>
 
       </div>

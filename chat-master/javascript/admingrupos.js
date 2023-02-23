@@ -56,18 +56,20 @@ var idgrupo = urlParams.get('idg');
   xhr.send("id_grupo=" + idgrupo);
   
 
+  
 
-    var array=[];
+    var arrayborrar=[];
+    var arrayagregar=[];
 
 function myfuncion(id){
 
     alert(id);
-    let pos = array.indexOf(id);
-    if(array[pos]==id){
-        console.log(array); 
+    let pos = arrayagregar.indexOf(id);
+    if(arrayagregar[pos]==id){
+        console.log(arrayagregar); 
     }else{
-        array.push(id);
-        console.log(array); 
+        arrayagregar.push(id);
+        console.log(arrayagregar); 
         document.getElementById(id).remove();
 
         obj = [{ "id_user_group": `${id}`, "estado": false }];
@@ -93,11 +95,11 @@ function myfuncion(id){
     function borraruser(id){
       let pos = 0;
       alert(id);
-      pos = array.indexOf(id);
-      if(array[pos]==id){
-        array.splice(pos, 1);
+      pos = arrayborrar.indexOf(id);
+      if(arrayborrar[pos]!=id){
+        arrayborrar.push(id);
         document.getElementById(id).remove();
-        console.log(array);
+        console.log(arrayborrar);
         obj = [{ "id_user_group": `${id}`, "estado": true }];
         console.log(obj)
         dbParam = JSON.stringify(obj);
