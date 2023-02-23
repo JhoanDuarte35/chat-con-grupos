@@ -19,6 +19,7 @@ inputField.onkeyup = ()=>{
 }
 
 sendBtn.onclick = ()=>{
+    inputField.disabled = false;
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "php/insert-chat.php", true);
     xhr.onload = ()=>{
@@ -71,6 +72,7 @@ document.getElementById("inputima").addEventListener('click', function() {
 
 document.getElementById("file-input").addEventListener('change', function() {
     let pos = this.files.length - 1;
+    inputField.disabled = true;
     document.getElementById('add_labels').innerHTML="";
     document.getElementById("add_labels").innerHTML += `<div class="details">${this.files[pos].name} 
     <button onclick="limpiar()">x</button></div>`;
