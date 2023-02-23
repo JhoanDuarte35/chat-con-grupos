@@ -79,14 +79,24 @@ if (!isset($_SESSION['unique_id'])) {
       </div>
   
     </section>
+    
+    <?php
+    include_once "php/config.php";
+    $idgrupo = mysqli_real_escape_string($conn, $_GET['idg']);
+    $sql2 = "SELECT * FROM grupos where id_grupo = {$idgrupo}";
+    $query2 = mysqli_query($conn, $sql2);
+    $row3 = mysqli_fetch_assoc($query2);
+    ?>
+
+
     <div id="form-crear">
       <div id="form-crear2">
         <form id="crear">
           
-            <input type="text" placeholder="Nombre del grupo" id="nombre" require>
+            <input type="text" placeholder="Nombre del grupo" id="nombre" value="<?php echo $row3['ngrupo']?>" require>
           
           
-            <input type="submit" class="btn-borde" id="boton" value="Crear Grupo">
+            <input type="submit" class="btn-borde" id="boton" value="Guardar">
           
           <div align="center" class="alert" id="mensaje"></div>
         </form>
@@ -97,7 +107,7 @@ if (!isset($_SESSION['unique_id'])) {
   
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-  <script src="javascript/crearGrupos.js"></script>
+  <script src="javascript/admingrupos.js"></script>
 
 </body>
 

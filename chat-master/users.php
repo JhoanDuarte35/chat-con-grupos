@@ -23,10 +23,11 @@ if (!isset($_SESSION['unique_id'])) {
             <span><?php echo $row['fname'] . " " . $row['lname'] ?></span>
             <p><?php echo $row['status']; ?></p>
           </div>
-          <div></div>
+          <?php if($_SESSION['rol']==0){ ?>
           <div id="gruposima">
             <a href="crearGrupos.php"><i class="fa-solid fa-user-group"></i></a>
           </div>
+          <?php }?>
           <div></div>
           <div>
           <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Cerrar Sesión</a>

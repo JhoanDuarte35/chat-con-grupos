@@ -10,7 +10,7 @@ if (isset($_SESSION['unique_id'])) {
 <body>
   <div class="wrapper">
     <section class="form signup">
-      <header>Sistema de Chat en Línea en PHP y MySQL</header>
+      <header>Puntualmente Chat, Registro</header>
       <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
         <div class="error-text"></div>
         <div class="name-details">
@@ -35,6 +35,13 @@ if (isset($_SESSION['unique_id'])) {
         <div class="field image">
           <label>Tu Avatar</label>
           <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
+        </div>
+        <div>
+          <label for="selrol">Selecciona un rol: </label>
+          <select name="rol" id="selrol">
+            <option value="1">Usuario</option>
+            <option value="0">Admin</option>
+          </select>
         </div>
         <div class="field button">
           <input type="submit" name="submit" value="Acceder al Chat">

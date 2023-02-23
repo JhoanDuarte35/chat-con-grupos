@@ -24,13 +24,21 @@ if (!isset($_SESSION['unique_id'])) {
           <p><?php echo $row['status']; ?></p>
         <?php 
         } else {
-
           $sql2 = mysqli_query($conn, "SELECT * FROM grupos WHERE id_grupo = {$user_id}");
           $row = mysqli_fetch_assoc($sql2); ?>
           <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
           <img src="php/images/grupo/puntual.png" alt="">
           <div class="details">
           <span><?php echo $row['ngrupo']?></span>
+
+          <?php 
+          if($_SESSION['rol']==0){
+          ?>
+          <a href="admingrupo.php?idg=<?php echo $row['id_grupo']; ?>"><i class="fa-solid fa-gear"></i></a>
+          <?php
+          }
+          ?>
+
         <?php }
         ?>
         

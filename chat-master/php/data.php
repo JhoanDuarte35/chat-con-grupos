@@ -1,4 +1,5 @@
 <?php
+
 while ($row = mysqli_fetch_assoc($query)) {
     $sql2 = "SELECT * FROM messages WHERE (incoming_msg_id = {$row['unique_id']}
                 OR outgoing_msg_id = {$row['unique_id']}) AND (outgoing_msg_id = {$outgoing_id} 
@@ -12,7 +13,7 @@ while ($row = mysqli_fetch_assoc($query)) {
     } else {
         $you = "";
     }
-    ($row['status'] == "Fuera de Línea") ? $offline = "offline" : $offline = "";
+    ($row['status'] == "Offline now") ? $offline = "offline" : $offline = "";
     ($outgoing_id == $row['unique_id']) ? $hid_me = "hide" : $hid_me = "";
 
     $output .= '<a href="chat.php?user_id=' . $row['unique_id'] . '">
