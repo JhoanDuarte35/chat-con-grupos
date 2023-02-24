@@ -73,6 +73,7 @@ document.getElementById("inputima").addEventListener('click', function() {
 document.getElementById("file-input").addEventListener('change', function() {
     let pos = this.files.length - 1;
     inputField.disabled = true;
+    inputField.value = "";
     document.getElementById('add_labels').innerHTML="";
     document.getElementById("add_labels").innerHTML += `<div class="details">${this.files[pos].name} 
     <button onclick="limpiar()">x</button></div>`;

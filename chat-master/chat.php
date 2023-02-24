@@ -12,8 +12,8 @@ if (!isset($_SESSION['unique_id'])) {
     <section class="chat-area">
       <header>
         <?php
-        $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
-        $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$user_id}");
+        $grupo_id = mysqli_real_escape_string($conn, $_GET['user_id']);
+        $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$grupo_id}");
         if (mysqli_num_rows($sql) > 0) {
           $row = mysqli_fetch_assoc($sql);
           ?>
@@ -24,7 +24,7 @@ if (!isset($_SESSION['unique_id'])) {
           <p><?php echo $row['status']; ?></p>
         <?php 
         } else {
-          $sql2 = mysqli_query($conn, "SELECT * FROM grupos WHERE id_grupo = {$user_id}");
+          $sql2 = mysqli_query($conn, "SELECT * FROM grupos WHERE id_grupo = {$grupo_id}");
           $row = mysqli_fetch_assoc($sql2); ?>
           <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
           <img src="php/images/grupo/puntual.png" alt="">
@@ -32,9 +32,11 @@ if (!isset($_SESSION['unique_id'])) {
           <span><?php echo $row['ngrupo']?></span>
 
           <?php 
-          if($_SESSION['rol']==0){
+          $sql3 = mysqli_query($conn, "SELECT * FROM grupos WHERE id_grupo = {$grupo_id}");
+          $row3 = mysqli_fetch_assoc($sql3);
+          if($row3['propietario']==$_SESSION['unique_id']){
           ?>
-          <a href="admingrupo.php?idg=<?php echo $row['id_grupo']; ?>"><i class="fa-solid fa-gear"></i></a>
+          <a id="inputima" href="admingrupo.php?idg=<?php echo $row['id_grupo']; ?>"><i class="fa-solid fa-gear"></i></a>
           <?php
           }
           ?>
@@ -53,7 +55,7 @@ if (!isset($_SESSION['unique_id'])) {
         <div id="inputima"><i class="fa-solid fa-image"></i></div>
      
         <input id="file-input" style="display:none" type="file" name="image" accept="image/png,image/jpeg">
-        <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
+        <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $grupo_id; ?>" hidden>
         <input type="text" name="message" class="input-field" placeholder="Escribe tu mensaje aquí..." autocomplete="off">
         <button><i class="fab fa-telegram-plane"></i></button>
       </form>

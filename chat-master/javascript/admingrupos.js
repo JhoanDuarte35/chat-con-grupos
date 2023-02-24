@@ -138,7 +138,7 @@ function myfuncion(id){
             dataType:"json",
             url:"php/grupos-guardar.php",
             type:"POST",
-            data:{nombre:$("#nombre").val(), array: JSON.stringify(array)},
+            data:{nombre:$("#nombre").val(), borrar: JSON.stringify(arrayborrar), agregar: JSON.stringify(arrayagregar),  idgrupo: idgrupo, actualizar:true},
             success: function(data){
                 if(data.success==false){
                     $("#mensaje").show();

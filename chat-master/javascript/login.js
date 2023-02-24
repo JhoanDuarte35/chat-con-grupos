@@ -12,6 +12,7 @@ continueBtn.onclick = ()=>{
     xhr.onload = ()=>{
       if(xhr.readyState === XMLHttpRequest.DONE){
           if(xhr.status === 200){
+            location.href = "users.php";
               let data = xhr.response;
               if(data === "success"){
                 location.href = "users.php";

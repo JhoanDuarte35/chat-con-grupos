@@ -57,22 +57,23 @@ if (!isset($_SESSION['unique_id'])) {
         $query3 = mysqli_query($conn, $sql3);
         $row3 = mysqli_fetch_assoc($query3);
         $data=[];
-        
-        
+        foreach($query3 as $value){
+        array_push($data, $value['id_usuario']);
+        }
+        var_dump($data);
 
         $sql = "SELECT * FROM users WHERE NOT unique_id = {$outgoing_id} ORDER BY user_id DESC";
         $query = mysqli_query($conn, $sql);
-       $row = mysqli_fetch_assoc($query);
-       foreach($query as $value){
-        array_push($data, $value['unique_id']);
-        }
-        var_dump($data);
+      // $row = mysqli_fetch_assoc($query);
+      
+       
         ?>
         <?php
-            foreach($query3 as $value){
-                $indice=0;
-                $indice=array_search($value['id_usuario'], $data, true);
-                if($indice!=0){
+            
+          while ($row = mysqli_fetch_assoc($query)) {
+            $clave = array_search($row['unique_id'], $data);
+            if($row['unique_id']!=$data[$clave]){
+
                 ?>
                     <div class="users-list">
      

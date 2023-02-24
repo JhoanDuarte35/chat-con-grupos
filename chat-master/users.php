@@ -25,7 +25,7 @@ if (!isset($_SESSION['unique_id'])) {
           </div>
           <?php if($_SESSION['rol']==0){ ?>
           <div id="gruposima">
-            <a href="crearGrupos.php"><i class="fa-solid fa-user-group"></i></a>
+            <a href="crearGrupos.php" title="Crear Grupos"><i class="fa-solid fa-user-group"></i></a>
           </div>
           <?php }?>
           <div></div>
