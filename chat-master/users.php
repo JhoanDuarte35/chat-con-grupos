@@ -23,9 +23,14 @@ if (!isset($_SESSION['unique_id'])) {
             <span><?php echo $row['fname'] . " " . $row['lname'] ?></span>
             <p><?php echo $row['status']; ?></p>
           </div>
-          <?php if($_SESSION['rol']==0){ ?>
+          <?php if($_SESSION['rol']==2){ ?>
           <div id="gruposima">
+            <div>
             <a href="crearGrupos.php" title="Crear Grupos"><i class="fa-solid fa-user-group"></i></a>
+            </div>
+            <div>
+            <a href="#" title="Agregar Usuarios"><i class="fa-solid fa-plus"></i></a>
+            </div>
           </div>
           <?php }?>
           <div></div>

@@ -40,11 +40,11 @@ if (isset($_SESSION['unique_id'])) {
           <label for="selrol">Selecciona un rol: </label>
           <select name="rol" id="selrol">
             <option value="1">Usuario</option>
-            <option value="0">Admin</option>
+            <option value="2">Admin</option>
           </select>
         </div>
         <div class="field button">
-          <input type="submit" name="submit" value="Acceder al Chat">
+          <input type="submit" name="submit" value="Registrar">
         </div>
       </form>
       <div class="link">Ya te has registrado? <a href="login.php">Ingresa desde acá</a></div>

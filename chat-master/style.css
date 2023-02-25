@@ -28,6 +28,8 @@ body{
   padding: 25px 30px;
 }
 .form header{
+  display: flex;
+  justify-content: center;
   font-size: 25px;
   font-weight: 600;
   padding-bottom: 10px;
@@ -83,7 +85,7 @@ body{
   border: none;
   color: #fff;
   font-size: 17px;
-  background: #1984bc;
+  background: #333;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 13px;
@@ -129,6 +131,7 @@ body{
   object-fit: cover;
   border-radius: 50%;
 }
+  
 .users header img{
   height: 50px;
   width: 50px;
@@ -427,11 +430,15 @@ body{
 }
 
 #gruposima{
+  display: flex;
   padding: 10px;
   background: #333;
   color: #fff;
   border-radius: 5px;
   margin: 5px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
   #gruposima i{
     text-decoration: none;
@@ -481,6 +488,36 @@ body{
 
 .img-nombre{
   display:grid;
+}
+
+.horasali{
+  font-size: 10px;
+  display: flex;
+  justify-content: end;
+}
+
+.horaentra{
+  font-size: 10px;
+  display: flex;
+  justify-content: start;
+}
+
+.dia{
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  background-color: #ccc;
+  padding: 5px 5px;
+  /* width: fit-content; */
+  border-radius: 15px;
+}
+
+.imgpuntual{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: none
+  ;
 }
 
 
