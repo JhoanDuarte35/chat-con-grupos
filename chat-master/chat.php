@@ -36,9 +36,9 @@ if (!isset($_SESSION['unique_id'])) {
           $row3 = mysqli_fetch_assoc($sql3);
           if($row3['propietario']==$_SESSION['unique_id']){
           ?>
-          <select>
-            <option><a id="gruposima" href="admingrupo.php?idg=<?php echo $row['id_grupo']; ?>"><i class="fa-solid fa-gear"></i></a></option>
-          </select>
+          <div>
+          <a id="gruposima" href="admingrupo.php?idg=<?php echo $row['id_grupo']; ?>"><i class="fa-solid fa-gear"></i></a>
+          </div>
           
           <?php
           }

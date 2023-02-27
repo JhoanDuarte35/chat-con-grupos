@@ -29,7 +29,7 @@ if (!isset($_SESSION['unique_id'])) {
             <a href="crearGrupos.php" title="Crear Grupos"><i class="fa-solid fa-user-group"></i></a>
             </div>
             <div>
-            <a href="#" title="Agregar Usuarios"><i class="fa-solid fa-plus"></i></a>
+            <a href="index.php" title="Agregar Usuarios"><i class="fa-solid fa-plus"></i></a>
             </div>
           </div>
           <?php }?>
