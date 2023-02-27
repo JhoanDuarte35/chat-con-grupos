@@ -60,7 +60,6 @@ if (!isset($_SESSION['unique_id'])) {
         foreach($query3 as $value){
         array_push($data, $value['id_usuario']);
         }
-        var_dump($data);
 
         $sql = "SELECT * FROM users WHERE NOT unique_id = {$outgoing_id} ORDER BY user_id DESC";
         $query = mysqli_query($conn, $sql);

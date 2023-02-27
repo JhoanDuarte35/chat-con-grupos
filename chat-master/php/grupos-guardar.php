@@ -16,19 +16,12 @@ if(isset($_POST['actualizar'])){
     }
     $borrar = json_decode($_POST['borrar']);
     $agregar = json_decode($_POST['agregar']);
-    echo "agregar";
-    var_dump($agregar);
-    echo "borrar";
-    var_dump($borrar);
-    echo "usuarios grupo";
-    var_dump($usuariosgrupo);
 
     //Borrar
     foreach($borrar as $value){ 
         $clave = array_search($value, $usuariosgrupo);
         if($value==$usuariosgrupo[$clave]){
             $del_query = mysqli_query($conn, "DELETE FROM grupo_integrante WHERE id_usuario = '{$value}' AND id_grupo = '{$id_grupo}'");
-            echo 'Borrado';
         }  
     }
 
@@ -37,13 +30,12 @@ if(isset($_POST['actualizar'])){
         $clave = array_search($value, $usuariosgrupo);
         if($value!=$usuariosgrupo[$clave]){
             $add_query = mysqli_query($conn, "INSERT INTO grupo_integrante (id_grupo, id_usuario) VALUES ('{$id_grupo}', '{$value}')");
-            echo "agregados";
         }  
     }
 
     //Actualizar Nombre
     $up_name = mysqli_query($conn, "UPDATE grupos SET ngrupo ='{$ngrupo}' WHERE id_grupo = '{$id_grupo}'");
-            echo "Nombre Actualizado";
+            echo "Grupo Actualizado con exito";
 
 
 
@@ -57,7 +49,7 @@ if(isset($_POST['actualizar'])){
     $id_grupo = $row['id_grupo'];
     $data = json_decode($_POST['array']);
     array_push($data, $outgoing_id);
-    var_dump($data);
+
     
     foreach($data as $value){ 
     

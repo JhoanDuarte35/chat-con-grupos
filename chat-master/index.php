@@ -44,7 +44,10 @@ session_start();
           <input type="submit" name="submit" value="Registrar">
         </div>
       </form>
-      <div class="link">Ya te has registrado? <a href="login.php">Ingresa desde acá</a></div>
+      <div>
+      <div class="link"><a href="users.php">Volver</a></div>
+      </div>
+      <!-- <div class="link">Ya te has registrado? <a href="login.php">Ingresa desde acá</a></div> -->
     </section>
   </div>
 
