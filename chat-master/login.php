@@ -30,6 +30,18 @@ if (isset($_SESSION['unique_id'])) {
     </section>
   </div>
 
+<!-- Prueba modal -->
+
+  <!-- <button onclick="window.modal.showModal();">Abrir ventana modal</button>
+
+    <dialog id="modal" style="dialog::backdrop {
+  background: rgba(234, 206, 227, 0.9);
+}">
+      <h2>Este es el título de mi ventana modal</h2>
+      <p>Este es un texto de ejemplo dentro de una ventana modal</p>
+      <button onclick="window.modal.close();">Cerrar</button>
+    </dialog> -->
+
   <script src="javascript/pass-show-hide.js"></script>
   <script src="javascript/login.js"></script>
 
