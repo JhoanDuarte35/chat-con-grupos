@@ -5,7 +5,9 @@ if (!isset($_SESSION['unique_id'])) {
   header("location: login.php");
 }
 ?>
-<?php include_once "header.php"; ?>
+<?php include_once "header.php"; 
+
+?>
 
 <body>
   <div class="wrapper">
@@ -28,11 +30,6 @@ if (!isset($_SESSION['unique_id'])) {
           </div>
       </header>
 
-      <div class="search">
-        <span class="text">Listado de todos los chats</span>
-        <input type="text" placeholder="Enter name to search...">
-        <button><i class="fas fa-search"></i></button>
-      </div>
       <div>
         <span class="text">Grupos</span>
         <?php
@@ -49,7 +46,7 @@ if (!isset($_SESSION['unique_id'])) {
             $row2 = mysqli_fetch_assoc($sql3);
             ?>
             <div class="users-list">
-            <a href="chat.php?user_id= <?php echo $value['id_grupo'] ?>">
+            <a href="seechats.php?user_id= <?php echo $value['id_grupo'] ?>">
                 <div class="content">
                 <img src="php/images/grupo/puntual.png">
                 <div class="details">
@@ -65,49 +62,77 @@ if (!isset($_SESSION['unique_id'])) {
 
       </div>
       <div class="users-list">
-        <span class="text">Usuarios</span>
+        <span class="text">Elige 2 usuarios para ver su chat</span>
         <?php
         $consulta = "SELECT * FROM users";
         $chatsuser = mysqli_query($conn, $consulta);
         $row5 = mysqli_fetch_assoc($chatsuser);
-        foreach($chatsuser as $value){
         ?>
         <div class="users-list">
-            <form>
+            <form action="seechats.php" method="post" name="formulario">
         <a>
             <div class="content">
-            <input type="text" id="user1" name="user1" value= <?php echo $value['unique_id']?> disabled hidden>
-            <img src="php/images/<?php echo $value['img']?>">
-            <div class="details">
-            <span>
-                <?php echo $value['fname'] . " " . $value['lname'] ?>
-            </span>
-                    <select id="user2" name="user2" required> 
-                        <option value="0" selected disabled>Elige un usuario</option>
-                        <?php 
-                         $chatsuser2 = mysqli_query($conn, "SELECT * FROM users WHERE NOT unique_id = '{$value['unique_id']}'");
-                        foreach($chatsuser2 as $value){?>
-                        <option value="<?php echo $value['unique_id']?>"><?php echo $value['fname'] . " " . $value['lname'] ?></option>
-                         <?php }?>   
-                    </select>
-                    <input onclick="myfuncion()" type="submit" value="Ver">
-                    <!-- <a href="php/allchats.php?u1=<?php //echo $value['unique_id']?>&u2=<?php //echo $value['unique_id']?>">Ver</a> -->
+                
+                    <div>
+                        <table >
+                        <tr> <td> <select name="user1" id="user1" required>
+                            <option value="0" selected disabled>Elige un usuario</option>
+                                <?php 
+                                $chatsuser2 = mysqli_query($conn, "SELECT * FROM users WHERE NOT unique_id = '{$_SESSION['unique_id']}'");
+                                foreach($chatsuser2 as $value){?>
+                                <option value="<?php echo $value['unique_id']?>"><?php echo $value['fname'] . " " . $value['lname'] ?></option>
+                                <?php }?>
+                        </select></td> 
+                        
+                        <td><select id="user2" name="user2" required> 
+                            <option value="0" selected disabled>Elige un usuario</option>
+                            <?php 
+                            $chatsuser3 = mysqli_query($conn, "SELECT * FROM users WHERE NOT unique_id = '{$_SESSION['unique_id']}'");
+                            foreach($chatsuser3 as $value){?>
+                            <option value="<?php echo $value['unique_id']?>"><?php echo $value['fname'] . " " . $value['lname'] ?></option>
+                            <?php }?></td> <td><input type="submit" value="Ver"></select></td>
+                        </tr>
+                        </table>
+                        <span class="error" name="error" id="error"></span>
+                    </div>
+                    <div>
+                           
+                    </div>
+                    <div>
+                        
+                    </div>
+                    
+                  
            
             </div>
-           
             </div>
         </a>
         </form>
     </div>
-
-    <?php }?>
 
       </div>
     </section>
   </div>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-  <script src="javascript/allchats.js"></script>
+  <script type="text/javascript">
+        window.addEventListener("load",function(){
+          document.formulario.addEventListener("submit",validarFormulario);
+        });		
+
+        function validarFormulario(e){
+          e = e || window.event;
+          if(window.formulario.user1.value==0 || window.formulario.user2.value==0 ){
+            e.preventDefault();
+            document.getElementById("error").innerHTML= "Selecciona un usuario";
+            document.getElementById("error").setAttribute("style","color:red;");
+          }else if(window.formulario.user1.value==window.formulario.user2.value){
+                e.preventDefault();
+                document.getElementById("error").innerHTML= "No puedes elegir al mismo usuario para ver sus chats";
+            document.getElementById("error").setAttribute("style","color:red;");
+            }
+        }
+  </script>
 
 </body>
 

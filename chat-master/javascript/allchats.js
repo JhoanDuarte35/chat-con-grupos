@@ -1,44 +1,58 @@
-const searchBar = document.querySelector(".search input"),
-searchIcon = document.querySelector(".search button"),
-usersList = document.querySelector(".users-list");
-listagrupos = document.querySelector(".lista-grupos");
 
-searchIcon.onclick = ()=>{
-  searchBar.classList.toggle("show");
-  searchIcon.classList.toggle("active");
-  searchBar.focus();
-  if(searchBar.classList.contains("active")){
-    searchBar.value = "";
-    searchBar.classList.remove("active");
-  }
+const form = document.querySelector(".typing-area"),
+incoming_id = form.querySelector(".incoming_id").value,
+outcoming_id = form.querySelector(".outcoming_id").value,
+inputField = form.querySelector(".input-field"),
+sendBtn = form.querySelector("button"),
+chatBox = document.querySelector(".chat-box");
+inputima = document.getElementById("file-input");
+
+chatBox.onmouseenter = ()=>{
+    chatBox.classList.add("active");
 }
 
-searchBar.onkeyup = ()=>{
-  let searchTerm = searchBar.value;
-  if(searchTerm != ""){
-    searchBar.classList.add("active");
-  }else{
-    searchBar.classList.remove("active");
-  }
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", "php/search.php", true);
-  xhr.onload = ()=>{
-    if(xhr.readyState === XMLHttpRequest.DONE){
-        if(xhr.status === 200){
-          let data = xhr.response;
-          usersList.innerHTML = data;
-        }
+chatBox.onmouseleave = ()=>{
+    chatBox.classList.remove("active");
+}
+
+
+
+
+setInterval(() =>{
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "php/allchats.php", true);
+    obj=[{"incoming_id": `${incoming_id}`, "outcoming_id":`${outcoming_id}`}];
+    console.log(obj);
+    dbParam = JSON.stringify(obj);
+    xhr.onload = ()=>{
+      if(xhr.readyState === XMLHttpRequest.DONE){
+          if(xhr.status === 200){
+            let data = xhr.response;
+            chatBox.innerHTML = data;
+            if(!chatBox.classList.contains("active")){
+                scrollToBottom();
+              }
+          }
+      }
     }
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("x=" + dbParam);
+}, 500);
+
+function scrollToBottom(){
+    chatBox.scrollTop = chatBox.scrollHeight;
   }
-  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhr.send("searchTerm=" + searchTerm);
-}
+  
 
 
-  function myfuncion(){
-    //window.location=`php/allchats.php?u1=${$("#user1").val()}&u2=${$("#user1").val()}`;
-    console.log($("#user1").val());
-    console.log($("#user2").val());
-  }
+
+
+
+
+
+
+
+
+  
 
 
