@@ -90,7 +90,7 @@ if (!isset($_SESSION['unique_id'])) {
                             $chatsuser3 = mysqli_query($conn, "SELECT * FROM users WHERE NOT unique_id = '{$_SESSION['unique_id']}'");
                             foreach($chatsuser3 as $value){?>
                             <option value="<?php echo $value['unique_id']?>"><?php echo $value['fname'] . " " . $value['lname'] ?></option>
-                            <?php }?></td> <td><input type="submit" value="Ver"></select></td>
+                            <?php }?></td> <td><input type="submit" class="btn-borde" value="Ver"></select></td>
                         </tr>
                         </table>
                         <span class="error" name="error" id="error"></span>

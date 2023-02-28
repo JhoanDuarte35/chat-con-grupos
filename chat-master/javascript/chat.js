@@ -85,6 +85,7 @@ function limpiar(){
     sendBtn.classList.remove("active");
     document.getElementById('file-input').value ='';
     document.getElementById('add_labels').innerHTML="";
-
-        
 }
+
+
+

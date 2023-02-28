@@ -27,7 +27,7 @@ if(!isset($_GET['user_id'])){
             <img src="php/images/grupo/puntual.png" alt="">
           <div class="details">
           <span>Chat de <?php echo $row['fname'] . " " . $row['lname'] ?> & <?php echo $row2['fname'] . " " . $row2['lname'] ?></span>
-          <p>Vista admin</p>
+          <p class="red">Vista admin</p>
           
         <?php 
         }
@@ -35,25 +35,18 @@ if(!isset($_GET['user_id'])){
             $grupo_id=$_GET['user_id'];
           $sql2 = mysqli_query($conn, "SELECT * FROM grupos WHERE id_grupo = {$grupo_id}");
           $row = mysqli_fetch_assoc($sql2); ?>
-          <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+          <a href="allchats.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
           <img src="php/images/grupo/puntual.png" alt="">
           <div class="details">
           <span><?php echo $row['ngrupo']?></span>
+          <p class="red">Vista admin</p>
 
           <?php 
           $sql3 = mysqli_query($conn, "SELECT * FROM grupos WHERE id_grupo = {$grupo_id}");
           $row3 = mysqli_fetch_assoc($sql3);
-          if($row3['propietario']==$_SESSION['unique_id']){
-          ?>
-          <div>
-          <a id="gruposima" href="admingrupo.php?idg=<?php echo $row['id_grupo']; ?>"><i class="fa-solid fa-gear"></i></a>
-          </div>
-          
-          <?php
-          }
-          ?>
+        
 
-        <?php }
+         }
         ?>
         
         </div>

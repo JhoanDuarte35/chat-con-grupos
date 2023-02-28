@@ -37,7 +37,7 @@ if (!isset($_SESSION['unique_id'])) {
           if($row3['propietario']==$_SESSION['unique_id']){
           ?>
           <div>
-          <a id="gruposima" href="admingrupo.php?idg=<?php echo $row['id_grupo']; ?>"><i class="fa-solid fa-gear"></i></a>
+          <a  href="admingrupo.php?idg=<?php echo $row['id_grupo']; ?>"><i class="fa-solid fa-gear"></i></a>
           </div>
           
           <?php
@@ -55,8 +55,8 @@ if (!isset($_SESSION['unique_id'])) {
       <div id="add_labels"></div>
       
       <form action="#" class="typing-area">
-        <div id="inputima"><i class="fa-solid fa-image"></i></div>
-     
+        <div id="tarea"><i class="fa-solid fa-list"></i></div>
+        <div id="inputima"><a><i class="fa-solid fa-image"></i></a></div>
         <input id="file-input" style="display:none" type="file" name="image" accept="image/png,image/jpeg">
         <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $grupo_id; ?>" hidden>
         <input type="text" name="message" class="input-field" placeholder="Escribe tu mensaje aquí..." autocomplete="off">
@@ -64,6 +64,57 @@ if (!isset($_SESSION['unique_id'])) {
       </form>
     </section>
   </div>
+
+<!-- modal -->
+
+    <div class="fondo_transparente">
+        <div class="modal">
+            <div class="modal_cerrar">
+                <span>x</span>
+            </div>
+            <div class="modal_titulo">Crear tarea</div>
+            <div class="modal_mensaje">
+      <form action="#">
+                <span for="nombre">Nombre</span>
+                <input id="nombre" name="nombre" type="text">
+                <div>
+                <span for="start">Fecha Inicio</span>
+                <input type="date" id="start" name="trip-start"
+                  value="2023-02-28"
+                  min="2023-02-28" max="2999-02-28">
+                  <span for="start">Fecha Fin</span>
+                <input type="date" id="end" name="trip-end"
+                  value="2018-07-22"
+                  min="2018-01-01" max="2018-12-31">
+                </div>
+                <span for="participantes">Participantes:</span>
+                <select name="participantes" id="participantes">
+                  <option value="0" disabled selected>Seleccionar Usuarios</option>
+                  <option value="s">Pepito Perez</option>
+                </select>
+                <input type="textarea" value="Hola" disabled>
+                <button>Agregar</button>
+      </form>
+            </div>
+            <div class="modal_botones">
+                <a href="" class="boton">Crear Tarea</a>
+            </div>
+        </div>
+    </div>   
+
+    <script type="text/javascript">
+      document.getElementById("tarea").addEventListener("click",function(){
+      document.getElementsByClassName("fondo_transparente")[0].style.display="block"
+      return false;
+      });
+
+      document.getElementsByClassName("modal_cerrar")[0].addEventListener("click", function(){
+      document.getElementsByClassName("fondo_transparente")[0].style.display="none";
+})
+    </script>
+
+
+
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 

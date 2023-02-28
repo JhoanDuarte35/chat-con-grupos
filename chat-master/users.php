@@ -25,11 +25,25 @@ if (!isset($_SESSION['unique_id'])) {
           </div>
           <?php if($_SESSION['rol']==2){ ?>
           <div id="gruposima">
+            <nav>
+              <ul>
+                <li>
+                <a href="crearGrupos.php" title="Crear Grupos"><i class="fa-solid fa-user-group"></i></a>
+                </li>
+                <li>
+                <a href="index.php" title="Agregar Usuarios"><i class="fa-solid fa-plus"></i></a>
+                </li>
+                <li>
+                <a href="allchats.php" title="Ver chats"><i class="fa-solid fa-eye"></i></a>
+
+                </li>
+              </ul>
+            </nav>
             <div>
-            <a href="crearGrupos.php" title="Crear Grupos"><i class="fa-solid fa-user-group"></i></a>
             </div>
             <div>
-            <a href="index.php" title="Agregar Usuarios"><i class="fa-solid fa-plus"></i></a>
+            </div>
+            <div>
             </div>
           </div>
           <?php }?>
