@@ -1,7 +1,7 @@
 const form = document.querySelector(".typing-area"),
 incoming_id = form.querySelector(".incoming_id").value,
 inputField = form.querySelector(".input-field"),
-sendBtn = form.querySelector("button"),
+sendBtn = form.querySelector(".button"),
 chatBox = document.querySelector(".chat-box");
 inputima = document.getElementById("file-input");
 
@@ -86,6 +86,39 @@ function limpiar(){
     document.getElementById('file-input').value ='';
     document.getElementById('add_labels').innerHTML="";
 }
+
+var participantes = [];
+
+function adduser(){
+    user=document.querySelector("#participantes").value;
+    participantes.push(user);
+    console.log(participantes);
+    user=user+user;
+    //document.querySelector("#user-list").value=participantes;      
+          $.ajax({
+              dataType:"json",
+              url:"php/get-names.php",
+              type:"POST",
+              data:{users: JSON.stringify(participantes)},
+              success: function(data){
+                  if(data.success==false){
+                    console.log(data);
+                      $("#mensaje").show();
+                      $("#mensaje").html(data.msg);
+                      $('.log-status').addClass('wrong-entry');
+                      $('.alert').fadeIn(700);
+                  setTimeout( "$('.alert').fadeOut(1800);",1500 );
+                  }else{
+                    document.querySelector("#user-list").value=data;
+                    console.log(data);
+                  }
+              },
+                  error: function(response) {
+                      $("#mensaje").show();
+                      $("#mensaje").html(response.responseText);
+                  }
+          });
+      };
 
 
 

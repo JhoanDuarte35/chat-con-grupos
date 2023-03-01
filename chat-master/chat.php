@@ -60,7 +60,7 @@ if (!isset($_SESSION['unique_id'])) {
         <input id="file-input" style="display:none" type="file" name="image" accept="image/png,image/jpeg">
         <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $grupo_id; ?>" hidden>
         <input type="text" name="message" class="input-field" placeholder="Escribe tu mensaje aquí..." autocomplete="off">
-        <button><i class="fab fa-telegram-plane"></i></button>
+        <button class="button"><i class="fab fa-telegram-plane"></i></button>
       </form>
     </section>
   </div>
@@ -74,31 +74,56 @@ if (!isset($_SESSION['unique_id'])) {
             </div>
             <div class="modal_titulo">Crear tarea</div>
             <div class="modal_mensaje">
-      <form action="#">
-                <span for="nombre">Nombre</span>
-                <input id="nombre" name="nombre" type="text">
-                <div>
-                <span for="start">Fecha Inicio</span>
+      <form>
+                <div class="ntarea">
+                  <span for="nombre">Nombre:</span>
+                  <input id="nombre" name="nombre" type="text">
+                </div>
+                
+                <div class="fechas">
+                <span for="start">Fecha Inicio:</span>
                 <input type="date" id="start" name="trip-start"
                   value="2023-02-28"
                   min="2023-02-28" max="2999-02-28">
-                  <span for="start">Fecha Fin</span>
+                  <span for="start">Fecha Fin:</span>
                 <input type="date" id="end" name="trip-end"
-                  value="2018-07-22"
-                  min="2018-01-01" max="2018-12-31">
+                  value="2023-02-28"
+                  min="2023-02-28" max="2999-02-28">
                 </div>
-                <span for="participantes">Participantes:</span>
-                <select name="participantes" id="participantes">
-                  <option value="0" disabled selected>Seleccionar Usuarios</option>
-                  <option value="s">Pepito Perez</option>
+                <?php 
+                $sql="SELECT * FROM users WHERE NOT unique_id = {$_SESSION['unique_id']}";
+                $usuarios = mysqli_query($conn, $sql);
+                ?>
+                <div class="participantes">
+                  <span for="participantes">Participantes:</span>
+                  <select name="participantes" id="participantes">
+                    <option value="0" disabled selected>Seleccionar Usuarios</option>
+                    <?php
+                      while($row=mysqli_fetch_assoc($usuarios)){
+                    ?>
+                    <option class="hola" id="5" value="<?php echo $row['unique_id']?>"><?php echo $row['fname'] . " " . $row['lname']?></option>
+                    <?php
+                      }
+                    ?>
+                  </select>
+                <button type="button" onclick="adduser()">Agregar</button>
+                </div>
+                
+                <textarea class="modaltextarea" name="descriparea" id="user-list" cols="35" rows="2" placeholder="Aquí saldran los participantes que agregues" disabled></textarea>
+                <span for="descarptarea">Descripción</span>
+                <textarea class="modaltextarea" name="descriparea" id="descriparea" cols="35" rows="2"></textarea>
+                <span for="etiqueta">Etiqueta: </span>
+                <select name="tiqueta" id="etiqueta">
+                  <option value="0">Cambio aparato</option>
+                  <option value="1">Otro cambio</option>
                 </select>
-                <input type="textarea" value="Hola" disabled>
-                <button>Agregar</button>
+                <div id="mensaje"></div>
+                <div class="modal_botones">
+                <button type="submit" class="boton">Crear tarea</button>
+                </div>
       </form>
             </div>
-            <div class="modal_botones">
-                <a href="" class="boton">Crear Tarea</a>
-            </div>
+            
         </div>
     </div>   
 

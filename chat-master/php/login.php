@@ -4,36 +4,7 @@ include_once "config.php";
 date_default_timezone_set('America/Bogota');
 
 
-function getRealIP()
-{
-
-    if (isset($_SERVER["HTTP_CLIENT_IP"]))
-    {
-        return $_SERVER["HTTP_CLIENT_IP"];
-    }
-    elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
-    {
-        return $_SERVER["HTTP_X_FORWARDED_FOR"];
-    }
-    elseif (isset($_SERVER["HTTP_X_FORWARDED"]))
-    {
-        return $_SERVER["HTTP_X_FORWARDED"];
-    }
-    elseif (isset($_SERVER["HTTP_FORWARDED_FOR"]))
-    {
-        return $_SERVER["HTTP_FORWARDED_FOR"];
-    }
-    elseif (isset($_SERVER["HTTP_FORWARDED"]))
-    {
-        return $_SERVER["HTTP_FORWARDED"];
-    }
-    else
-    {
-        return $_SERVER["REMOTE_ADDR"];
-    }
-
-}
-
+include_once "get-ip.php";
 
 $email = mysqli_real_escape_string($conn, $_POST['email']);
 $password = mysqli_real_escape_string($conn, $_POST['password']);

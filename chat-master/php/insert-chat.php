@@ -3,14 +3,16 @@
     date_default_timezone_set('America/Bogota');
     if(isset($_SESSION['unique_id'])){
         include_once "config.php";
+        include_once "get-ip.php";
         $outgoing_id = $_SESSION['unique_id'];
         $incoming_id = mysqli_real_escape_string($conn, $_POST['incoming_id']);
         $message = mysqli_real_escape_string($conn, $_POST['message']);
         $dia = date('Y-m-d');
         $hora = date('H:i:s');
+        $ip = getRealIP();
 
         if(!empty($message)){
-            $sql = mysqli_query($conn, "INSERT INTO messages (incoming_msg_id, outgoing_msg_id, msg, imagen, tipo, fecha, hora) VALUES ({$incoming_id}, {$outgoing_id}, '{$message}', '', '0', '{$dia}','{$hora}')") or die();
+            $sql = mysqli_query($conn, "INSERT INTO messages (incoming_msg_id, outgoing_msg_id, msg, imagen, tipo, fecha, hora, ip) VALUES ({$incoming_id}, {$outgoing_id}, '{$message}', '', '0', '{$dia}','{$hora}','{$ip}')") or die();
         }else{
             if (isset($_FILES['image'])) {
                 $img_name = $_FILES['image']['name'];
@@ -27,7 +29,7 @@
                         $time = time();
                         $new_img_name = $time . $img_name;
                         if (move_uploaded_file($tmp_name, "images/chat/" . $new_img_name)) {
-                            $insert_query = mysqli_query($conn, "INSERT INTO messages (incoming_msg_id, outgoing_msg_id, msg, imagen, tipo, fecha, hora) VALUES ('{$incoming_id}', '{$outgoing_id}', '', '{$new_img_name}', '1', '{$dia}','{$hora}')") or die();
+                            $insert_query = mysqli_query($conn, "INSERT INTO messages (incoming_msg_id, outgoing_msg_id, msg, imagen, tipo, fecha, hora, ip) VALUES ('{$incoming_id}', '{$outgoing_id}', '', '{$new_img_name}', '1', '{$dia}','{$hora}','{$ip}')") or die();
                             
                         }
                     } else {
