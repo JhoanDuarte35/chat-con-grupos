@@ -6,6 +6,11 @@
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
 }
+
+a{
+  text-decoration: none;  
+}
+
 body{
   display: flex;
   align-items: center;
@@ -136,15 +141,15 @@ body{
   height: 50px;
   width: 50px;
 }
-:is(.users, .users-list) .content{
+:is(.users, .users-list, .lista-grupos) .content{
   display: flex;
   align-items: center;
 }
-:is(.users, .users-list) .content .details{
+:is(.users, .users-list, .lista-grupos) .content .details{
   color: #000;
   margin-left: 20px;
 }
-:is(.users, .users-list) .details span{
+:is(.users, .users-list, .lista-grupos) .details span{
   font-size: 18px;
   font-weight: 500;
 }
@@ -174,7 +179,7 @@ body{
   position: absolute;
   height: 42px;
   width: calc(100% - 50px);
-  font-size: 16px;
+  font-size: 18px;
   padding: 0 13px;
   border: 1px solid #e6e6e6;
   outline: none;
@@ -208,8 +213,8 @@ body{
 .search button.active i::before{
   content: '\f00d';
 }
-.users-list{
-  max-height: 350px;
+.users-list, .lista-grupos{
+  max-height: 300px;
   overflow-y: auto;
 }
 :is(.users-list, .chat-box)::-webkit-scrollbar{
@@ -375,7 +380,7 @@ body{
     padding: 6px 10px;
     font-size: 16px;
   }
-  :is(.users, .users-list) .content .details{
+  :is(.users, .users-list, .lista-grupos) .content .details{
     margin-left: 15px;
   }
 
@@ -466,8 +471,8 @@ body{
 }
 
 #nombre{
-  height: 45px;
-    width: calc(80% - 50px);
+  height: 40px;
+    width: calc(70% - 50px);
     font-size: 16px;
     padding: 0 13px;
     border: 1px solid #e6e6e6;
@@ -633,4 +638,8 @@ tr:hover td { background: #d0dafd; color: #339; }
 
 .modaltextarea{
   width: 100%;
+}
+
+.hey{
+  display: flex;
 }

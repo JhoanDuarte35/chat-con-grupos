@@ -2,25 +2,19 @@
 include_once "config.php";
 
 $users = json_decode($_POST['users']);
-var_dump($users);
-
 $nombre=[];
 
 foreach($users as $value){
     $sql = "SELECT * FROM users WHERE unique_id= '{$value}'";
     $datos = mysqli_query($conn, $sql);
+    foreach($datos as $value){
+
+        array_push($nombre,$value['fname'] . " " . $value['lname']);
     
-    //array_push($nombre,$datos[''])
+    }
 }
 
-foreach($datos as $value){
-
-    array_push($nombre,$value['lname']);
-
-}
-
-
-
-$nams = implode(",", $nombre);
+$nams = implode(", ", $nombre);
 echo $nams;
+
 ?>

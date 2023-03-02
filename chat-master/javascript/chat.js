@@ -60,7 +60,13 @@ setInterval(() =>{
     }
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("incoming_id="+incoming_id);
-}, 500);
+
+    //valorActivo = document.querySelector('input[name="tipo"]:checked').value;
+    //console.log(valorActivo);
+
+
+
+}, 1000);
 
 function scrollToBottom(){
     chatBox.scrollTop = chatBox.scrollHeight;
@@ -90,10 +96,12 @@ function limpiar(){
 var participantes = [];
 
 function adduser(){
+    var select = document.getElementById("participantes");
     user=document.querySelector("#participantes").value;
     participantes.push(user);
+    select.options[select.selectedIndex].style.display = "none";
     console.log(participantes);
-    user=user+user;
+   
     //document.querySelector("#user-list").value=participantes;      
           $.ajax({
               dataType:"json",
@@ -101,24 +109,19 @@ function adduser(){
               type:"POST",
               data:{users: JSON.stringify(participantes)},
               success: function(data){
-                  if(data.success==false){
-                    console.log(data);
-                      $("#mensaje").show();
-                      $("#mensaje").html(data.msg);
-                      $('.log-status').addClass('wrong-entry');
-                      $('.alert').fadeIn(700);
-                  setTimeout( "$('.alert').fadeOut(1800);",1500 );
-                  }else{
-                    document.querySelector("#user-list").value=data;
-                    console.log(data);
-                  }
               },
                   error: function(response) {
-                      $("#mensaje").show();
-                      $("#mensaje").html(response.responseText);
+                      document.querySelector("#user-list").value=response.responseText;
                   }
           });
-      };
+
+        };
+
+    function selectuser(){
+        $("#partici").hide();
+    }
+ 
+
 
 
 

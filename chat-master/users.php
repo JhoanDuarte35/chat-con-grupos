@@ -12,6 +12,9 @@ if (!isset($_SESSION['unique_id'])) {
     <section class="users">
       <header>
         <div class="content">
+          <div class="hey">
+            
+         
           <?php
           $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
           if (mysqli_num_rows($sql) > 0) {
@@ -24,32 +27,31 @@ if (!isset($_SESSION['unique_id'])) {
             <p><?php echo $row['status']; ?></p>
           </div>
           <?php if($_SESSION['rol']==2){ ?>
-          <div id="gruposima">
-            <nav>
-              <ul>
-                <li>
-                <a href="crearGrupos.php" title="Crear Grupos"><i class="fa-solid fa-user-group"></i></a>
-                </li>
-                <li>
-                <a href="index.php" title="Agregar Usuarios"><i class="fa-solid fa-plus"></i></a>
-                </li>
-                <li>
-                <a href="allchats.php" title="Ver chats"><i class="fa-solid fa-eye"></i></a>
+            <div class="dropdown show dropleft hola">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+                          </a>
 
-                </li>
-              </ul>
-            </nav>
-            <div>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a href="crearGrupos.php" title="Crear Grupos" class="dropdown-item"><i class="fa-solid fa-user-group"></i> Crear Grupos</a>
+              <a href="index.php" title="Agregar Usuarios" class="dropdown-item"><i class="fa-solid fa-plus"></i> Agregar Usuarios</a>
+              <a href="allchats.php" title="Ver chats" class="dropdown-item"><i class="fa-solid fa-eye"></i> Ver Chats</a>
+              <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="dropdown-item"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+
+              </div>
             </div>
-            <div>
+          <?php }else{?>
+            <div class="dropdown show dropleft hola">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+                          </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="dropdown-item"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+              </div>
             </div>
-            <div>
-            </div>
-          </div>
           <?php }?>
-          <div></div>
-          <div>
-          <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Cerrar Sesión</a>
+          </div>
           </div>
       </header>
         <span class="text">Tus grupos</span>

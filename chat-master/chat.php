@@ -76,7 +76,7 @@ if (!isset($_SESSION['unique_id'])) {
             <div class="modal_mensaje">
       <form>
                 <div class="ntarea">
-                  <span for="nombre">Nombre:</span>
+                  <span for="nombre">Nombre/Titulo:</span>
                   <input id="nombre" name="nombre" type="text">
                 </div>
                 
@@ -90,11 +90,20 @@ if (!isset($_SESSION['unique_id'])) {
                   value="2023-02-28"
                   min="2023-02-28" max="2999-02-28">
                 </div>
+
+                <div>
+                  <label>Selecciona a quien le asignaras la tarea</label>
+                  <br>
+                  <input type="radio" name="tipo" value="usuario" id="usuario" onclick="selectuser()"> <label for="usuario">Usuario</label> 
+                  <input type="radio" name="tipo" value="area" id="area" onclick="selectarea()"> <label for="area">Area</label> 
+                  <br>
+                </div>
+
                 <?php 
                 $sql="SELECT * FROM users WHERE NOT unique_id = {$_SESSION['unique_id']}";
                 $usuarios = mysqli_query($conn, $sql);
                 ?>
-                <div class="participantes">
+                <div class="participantes" id="partici">
                   <span for="participantes">Participantes:</span>
                   <select name="participantes" id="participantes">
                     <option value="0" disabled selected>Seleccionar Usuarios</option>
@@ -107,6 +116,10 @@ if (!isset($_SESSION['unique_id'])) {
                     ?>
                   </select>
                 <button type="button" onclick="adduser()">Agregar</button>
+                </div>
+
+                <div id="hi">
+
                 </div>
                 
                 <textarea class="modaltextarea" name="descriparea" id="user-list" cols="35" rows="2" placeholder="Aquí saldran los participantes que agregues" disabled></textarea>
