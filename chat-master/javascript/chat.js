@@ -118,7 +118,11 @@ function adduser(){
         };
 
     function selectuser(){
-        $("#partici").hide();
+        $("#partici").show();
+    }
+
+    function selectarea(){
+        $("#partici").show();
     }
  
 

@@ -1,8 +1,15 @@
 <?php
 session_start();
+if (!isset($_SESSION['unique_id'])) {
+  header("location: login.php");
+}elseif( $_SESSION['rol']==1){
+  header("location: users.php");
+}else{
+
 ?>
 
-<?php include_once "header.php"; ?>
+<?php include_once "header.php";
+      include_once "php/config.php"; ?>
 
 <body>
   <div class="wrapper">
@@ -40,6 +47,30 @@ session_start();
             <option value="2">Admin</option>
           </select>
         </div>
+        <br>
+        <label for="area">Area:</label>
+        <select name="area" id="area">
+          <option value="0" selected disabled>Selecciona un area</option>
+
+        <?php $areas=mysqli_query($conn, "SELECT * FROM areas");
+        foreach($areas as $valor){
+        ?>
+          <option value="<?php echo $valor['id_area']?>"><?php echo $valor['n_area']?></option>
+          <?php } ?>
+        </select>
+        <br>
+        <br>
+        <label for="area">Grupo:</label>
+        <select name="area" id="area">
+          <option value="0" selected disabled>Selecciona un grupo</option>
+          <?php $areas=mysqli_query($conn, "SELECT * FROM empresa_grupos");
+        foreach($areas as $valor){
+        ?>
+          <option value="<?php echo $valor['id_grupo']?>"><?php echo $valor['n_grupo']?></option>
+          <?php } ?>
+        </select>
+
+
         <div class="field button">
           <input type="submit" name="submit" value="Registrar">
         </div>
@@ -57,3 +88,4 @@ session_start();
 </body>
 
 </html>
+<?php }?>

@@ -36,6 +36,7 @@ if (!isset($_SESSION['unique_id'])) {
               <a href="crearGrupos.php" title="Crear Grupos" class="dropdown-item"><i class="fa-solid fa-user-group"></i> Crear Grupos</a>
               <a href="index.php" title="Agregar Usuarios" class="dropdown-item"><i class="fa-solid fa-plus"></i> Agregar Usuarios</a>
               <a href="allchats.php" title="Ver chats" class="dropdown-item"><i class="fa-solid fa-eye"></i> Ver Chats</a>
+              <a href="generaladmin.php" class="dropdown-item"><i class="fa-solid fa-gear"></i> Configuraciones</a>
               <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="dropdown-item"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
 
               </div>

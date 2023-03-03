@@ -94,7 +94,7 @@ if (!isset($_SESSION['unique_id'])) {
                 <div>
                   <label>Selecciona a quien le asignaras la tarea</label>
                   <br>
-                  <input type="radio" name="tipo" value="usuario" id="usuario" onclick="selectuser()"> <label for="usuario">Usuario</label> 
+                  <input type="radio" name="tipo" value="usuario" id="usuario" onclick="selectuser()" checked> <label for="usuario">Usuario</label> 
                   <input type="radio" name="tipo" value="area" id="area" onclick="selectarea()"> <label for="area">Area</label> 
                   <br>
                 </div>
@@ -118,9 +118,21 @@ if (!isset($_SESSION['unique_id'])) {
                 <button type="button" onclick="adduser()">Agregar</button>
                 </div>
 
-                <div id="hi">
-
+                <div class="participantes" id="partici">
+                  <span for="participantes">Participantes:</span>
+                  <select name="participantes" id="participantes">
+                    <option value="0" disabled selected>Seleccionar Usuarios</option>
+                    <?php
+                      while($row=mysqli_fetch_assoc($usuarios)){
+                    ?>
+                    <option class="hola" id="5" value="<?php echo $row['unique_id']?>"><?php echo $row['fname'] . " " . $row['lname']?></option>
+                    <?php
+                      }
+                    ?>
+                  </select>
+                <button type="button" onclick="adduser()">Agregar</button>
                 </div>
+
                 
                 <textarea class="modaltextarea" name="descriparea" id="user-list" cols="35" rows="2" placeholder="Aquí saldran los participantes que agregues" disabled></textarea>
                 <span for="descarptarea">Descripción</span>
