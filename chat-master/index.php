@@ -9,7 +9,9 @@ if (!isset($_SESSION['unique_id'])) {
 ?>
 
 <?php include_once "header.php";
-      include_once "php/config.php"; ?>
+      include_once "php/config.php"; 
+      $sql=mysqli_query($conn, "SELECT * FROM config_generales where id_config = 1");
+      ?>
 
 <body>
   <div class="wrapper">
@@ -37,8 +39,15 @@ if (!isset($_SESSION['unique_id'])) {
           <i class="fas fa-eye"></i>
         </div>
         <div class="field image">
-          <label>Tu Avatar</label>
-          <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
+          <label>Tu Foto</label>
+          <br>
+          <?php 
+          foreach($sql as $value){
+            $t_img=$value['t_imgs']/1000;?>
+          <span>La imagen debe tener un peso inferior a <?php echo $t_img?> Kb</span>
+          <?php }?>
+          <input id="myFile" type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
+          <div id="errores"></div>
         </div>
         <div>
           <label for="selrol">Selecciona un rol: </label>
@@ -48,6 +57,12 @@ if (!isset($_SESSION['unique_id'])) {
           </select>
         </div>
         <br>
+        <?php 
+        
+        foreach($sql as $value){
+        ?>
+        <input type="text" id="tarchivo" value="<?php echo $value['t_imgs']?>" disabled hidden>
+        <?php } ?>
         <label for="area">Area:</label>
         <select name="area" id="area">
           <option value="0" selected disabled>Selecciona un area</option>
