@@ -13,13 +13,17 @@ if (isset($_SESSION['unique_id'])) {
         $sql3 = "SELECT * FROM messages LEFT JOIN users ON users.unique_id = messages.outgoing_msg_id
                 WHERE (incoming_msg_id = {$incoming_id}) ORDER BY msg_id";
         $query3 = mysqli_query($conn, $sql3);
-       
+        $unavez=false;
+        $unavez2=false;
         if (mysqli_num_rows($query3) > 0) {
-            $unavez=false;
-            $unavez2=false;
+
+         
             $cuando="";
             $dia = date('Y-m-d');
             while ($row = mysqli_fetch_assoc($query3)) {
+
+              
+
                
                 if($row['fecha']==$dia){
                     $cuando="Hoy";
@@ -48,14 +52,14 @@ if (isset($_SESSION['unique_id'])) {
                         $output .= '
                         <div class="chat outgoing">
                         <div class="details">
-                            <p>' . $row['msg'] . ' <br> <spam class="horasali"> ' . $row['hora'] . '</spam></p>
+                            <p>' . $row['msg'] . ' <br> <spam class="horasali"> ' . formatohora($row['hora']) . '</spam></p>
                         </div>
                         </div>';
                     }else{
                         $output .= '<div class="chat outgoing">
                         <div class="details">
                             <img id="msimg" src="php/images/chat/' . $row['imagen'] . '" alt="">
-                            <br> <spam class="horasali"> ' . $row['hora'] . '</spam>
+                            <br> <spam class="horasali"> ' . formatohora($row['hora']) . '</spam>
                         </div>
                         </div>';
                     }
@@ -66,7 +70,7 @@ if (isset($_SESSION['unique_id'])) {
                                     <img src="php/images/' . $row['img'] . '" alt="">
                                     <div class="details">
                                     <span> ' . $row['fname'] . " " . $row['lname'] . ' </span>
-                                        <p>' . $row['msg'] . ' <br> <spam class="horaentra"> ' . $row['hora'] . '</spam></p>
+                                        <p>' . $row['msg'] . ' <br> <spam class="horaentra"> ' . formatohora($row['hora']) . '</spam></p>
                                     </div>
                                     </div>';
                 }else{
@@ -76,7 +80,7 @@ if (isset($_SESSION['unique_id'])) {
                                     <div class="img-nombre">
                                     <span> ' . $row['fname'] . " " . $row['lname'] . ' </span>
                                     <img id="msimg" src="php/images/chat/' . $row['imagen'] . '" alt="">
-                                    <spam class="horaentra"> ' . $row['hora'] . '</spam>
+                                    <spam class="horaentra"> ' . formatohora($row['hora']) . '</spam>
                                     </div>
                                     </div>
                                     </div>';
@@ -130,14 +134,14 @@ if (isset($_SESSION['unique_id'])) {
         if($row['tipo']!=1){
             $output .= '<div class="chat outgoing">
                             <div class="details">
-                                <p>' . $row['msg'] . ' <spam class="horasali"> ' . $row['hora'] . '</spam></p>
+                                <p>' . $row['msg'] . ' <spam class="horasali"> ' . formatohora($row['hora']) . '</spam></p>
                             </div>
                             </div>';
             }else{
             $output .= '<div class="chat outgoing">
                 <div class="details">
                     <img id="msimg" src="php/images/chat/' . $row['imagen'] . '" alt="">
-                    <spam class="horasali"> ' . $row['hora'] . '</spam>
+                    <spam class="horasali"> ' . formatohora($row['hora']) . '</spam>
                 </div>
                 </div>'; 
             }
@@ -146,7 +150,7 @@ if (isset($_SESSION['unique_id'])) {
             $output .= '<div class="chat incoming">
                             <img src="php/images/' . $row['img'] . '" alt="">
                             <div class="details">
-                                <p>' . $row['msg'] . ' <spam class="horaentra"> ' . $row['hora'] . '</spam></p>
+                                <p>' . $row['msg'] . ' <spam class="horaentra"> ' . formatohora($row['hora']) . '</spam></p>
                             </div>
                             </div>';
         }else{
@@ -154,7 +158,7 @@ if (isset($_SESSION['unique_id'])) {
                 <img src="php/images/' . $row['img'] . '" alt="">
                 <div class="details">
                 <img id="msimg" src="php/images/chat/' . $row['imagen'] . '" alt="">
-                <spam class="horaentra"> ' . $row['hora'] . '</spam>
+                <spam class="horaentra"> ' . formatohora($row['hora']) . '</spam>
                 </div>
                 </div>';
         }
@@ -169,5 +173,16 @@ if (isset($_SESSION['unique_id'])) {
     }
 
     
+    function formatohora($hora){
+        $formato=strtotime('12:00');
+        $hora = date("H:i", strtotime($hora)); 
+        if($hora>$formato){
+            $nhora= date("H:i", strtotime($hora." - 12 hour"));
+            return $nhora . ' pm';
+        }else{
+            return $hora . ' am';
+        }
+        
+    }
   
     

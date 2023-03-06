@@ -92,8 +92,8 @@ if (!isset($_SESSION['unique_id'])) {
                             </thead>
                             
                             <tbody id="tablausers2">
-                           <?php $areas = mysqli_query($conn, "SELECT * FROM empresa_grupos");
-                            foreach($areas as $value){?>
+                           <?php $grupos = mysqli_query($conn, "SELECT * FROM empresa_grupos");
+                            foreach($grupos as $value){?>
                             <tr>
                                 <td>
                                 <span><?php echo $value['n_grupo'] ?></span>
@@ -124,14 +124,31 @@ if (!isset($_SESSION['unique_id'])) {
             <div id="msjtamaño"></div>
             <?php } ?>
             <br>
+
+<!-- ETIQUETAS -->
+
         <h5>Crear etiquetas</h5>
-        <textarea name="etiqueta" id="etiqueta" cols="20" rows="2" placeholder="Escribe la etiqueta aquí"></textarea>
-        <select name="areaetiqueta" id="areaetiqueta">
-          <option value="0" selected disabled>Selecciona un area</option>
-          <option value="1">AREA N</option>
-        </select>
-            <button type="button" class="btn-borde" onclick="agregargrupos()">Agregar</button>
-        <div id="mensaje"></div>
+        <div id="editetiqueta">
+          <textarea name="des_etiqueta" id="des_etiqueta" cols="20" rows="2" placeholder="Escribe la etiqueta aquí"></textarea>
+          <br>
+          <span for="t_estimado">Tiempo estimado respuesta de la tarea: </span>
+          <input type="number" name="t_estimado" id="t_estimado">
+          <select name="tipo_t" id="tipo_t">
+            <option value="horas">Horas</option>
+            <option value="dias">Dias</option>
+          </select>
+          <select name="area_etiqueta" id="area_etiqueta">
+            <br>
+            <option value="0" selected disabled>Selecciona un area</option>
+
+            
+            <?php foreach($areas as $value){?>
+            <option value=<?php echo $value['id_area']?>><?php echo $value['n_area']?></option>
+            <?php }?>
+          </select>
+              <button type="button" class="btn-borde" onclick="agregaretiqueta()">Agregar</button>
+        </div>
+        <div id="mensaje_etiqueta"></div>
 
         <div class="users-list">
         <a>
@@ -142,22 +159,38 @@ if (!isset($_SESSION['unique_id'])) {
                             <thead>
                                 <td>Etiqueta</td>
                                 <td>Area</td>
+                                <td>Tiempo Estimado</td>
                                 <td>Editar</td>
                                 <td>Eliminar</td>
                             </thead>
                             
-                            <tbody id="tablausers2">
-                           <?php //$areas = mysqli_query($conn, "SELECT * FROM empresa_grupos");
-                            //foreach($areas as $value){?>
+                            <tbody id="tablaetiquetas">
+                           <?php $etiquetas = mysqli_query($conn, "SELECT * FROM etiquetas");
+                            foreach($etiquetas as $value){?>
                             <tr>
                                 <td>
-                                <span><?php //echo $value['n_grupo'] ?></span>
+                                <span><?php echo $value['descrip_etiq'] ?></span>
                                 </td>
                                 <td>
-                                <!-- <button type="button" id="<?php //echo $value['id_grupo'] ?>" onclick="borrargrupos(this.id)" class="btn-borde"><i class="fa-solid fa-xmark"></i></button> -->
-                                </td> 
+                                  <?php 
+                                  $area_etiq=mysqli_query($conn, "SELECT * FROM areas WHERE id_area= '{$value['id_area']}'");
+                                  foreach($area_etiq as $value2){
+                                  ?>
+                                <span><?php echo $value2['n_area'] ?></span>
+                                  <?php }?>
+                                </td>
+                                <td>
+                                  <span><?php echo $value['t_estimado'] . " " . $value['tipo_t'] ?></span>
+                                </td>
+                                <td>
+                                <button type="button" id="<?php echo $value['id_etiqueta'] ?>" onclick="editaretiqueta(this.id)" class="btn-borde"><i class="fa-solid fa-pen-to-square"></i></button>
+                                </td>
+                                <td>
+                                <button type="button" id="<?php echo $value['id_etiqueta'] ?>" onclick="borraretiqueta(this.id)" class="btn-borde"><i class="fa-solid fa-xmark"></i></button>
+                                </td>
+                                
                             </tr>
-                            <?php //}?>
+                            <?php }?>
                             </tbody>
                         </table>
                         <span class="error" name="error" id="error"></span>
