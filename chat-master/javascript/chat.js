@@ -93,6 +93,8 @@ function limpiar(){
     document.getElementById('add_labels').innerHTML="";
 }
 
+// ----------------------MODAL-------------------------------------
+
 var participantes = [];
 
 function adduser(){
@@ -101,13 +103,12 @@ function adduser(){
     participantes.push(user);
     select.options[select.selectedIndex].style.display = "none";
     console.log(participantes);
-   
-    //document.querySelector("#user-list").value=participantes;      
+     
           $.ajax({
               dataType:"json",
               url:"php/get-names.php",
               type:"POST",
-              data:{users: JSON.stringify(participantes)},
+              data:{users: JSON.stringify(participantes), tipo: 0},
               success: function(data){
               },
                   error: function(response) {
@@ -125,7 +126,29 @@ function adduser(){
         $("#partici").show();
     }
  
+    function areaselect(id){
 
+        mostrar_etiqueta=document.getElementById('etiqueta');
 
+        obj = [{ "id_area": id, "tipo": 1 }];
+        console.log(obj)
+        dbParam = JSON.stringify(obj);
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "php/get-names.php", true);
+      xhr.onload = ()=>{
+      if(xhr.readyState === XMLHttpRequest.DONE){
+          if(xhr.status === 200){
+            let data = xhr.response;
+            mostrar_etiqueta.innerHTML = data;
+            console.log(data);
+          }else{
+            console.log(data);
+          }
+      }
+    }
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("x=" + dbParam);
+    }
 
+    
 

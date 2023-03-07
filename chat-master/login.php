@@ -10,7 +10,7 @@ if (isset($_SESSION['unique_id'])) {
 <body>
   <div class="wrapper">
     <section class="form login">
-      <header>Login Chat</header>
+      <header>Intranet Puntualmente</header>
       <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
         <div class="error-text"></div>
         <div class="field input">

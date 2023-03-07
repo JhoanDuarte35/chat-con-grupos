@@ -94,12 +94,22 @@ if (!isset($_SESSION['unique_id'])) {
 
                 </div>
                 <br>
+                <span for="area_etiqueta">Area para ver etiqueta: </span>
+                <select name="area_etiqueta" id="area_etiqueta" onchange="areaselect(this.value)">
+                  <option value="0" selected disabled>Area para ver sus etiquetas </option>
+                  <?php $sql=mysqli_query($conn,"SELECT * FROM areas");
+                  foreach($sql as $value){?>
+                  <option value="<?php echo $value['id_area'] ?>"> <?php echo $value['n_area']?></option>
+                  <?php } ?>
+                </select>
+                    <br>
+                    <br>
                 <span for="etiqueta">Etiqueta: </span>
                 <select name="tiqueta" id="etiqueta">
-                  <option value="0">Cambio mouse</option>
-                  <option value="1">Otro cambio</option>
+                  <!-- Se llenara solo -->
                 </select>
                 <br>
+                
                 <br>
                 <div>
                   <label>Selecciona a quien le asignaras la tarea</label>

@@ -69,7 +69,7 @@ if(isset($_POST['x'])){
         }
 }elseif($estado==3){
 
-    if(!isset($data[0]->borrar)){
+    if(!isset($data[0]->borrar) && !isset($data[0]->actualizar)){
         $descrip=$data[0]->descrip;
         $t_estimado=$data[0]->t_estimado;
         $tipo_t=$data[0]->tipo_t;
@@ -84,7 +84,27 @@ if(isset($_POST['x'])){
         }else{
             echo "Error al guardar";
         }
-    }elseif(isset($data[0]->borrar)){
+
+    }elseif(isset($data[0]->actualizar)){
+            if($data[0]->actualizar==true){
+                $descrip=$data[0]->descrip;
+                $t_estimado=$data[0]->t_estimado;
+                $tipo_t=$data[0]->tipo_t;
+                $area_etiqueta=$data[0]->area_etiqueta;
+                $id=$data[0]->id_etiqueta;
+    
+                $sql="UPDATE etiquetas SET id_area='{$area_etiqueta}', descrip_etiq='{$descrip}', t_estimado='{$t_estimado}', tipo_t='{$tipo_t}' WHERE id_etiqueta= {$id}";
+                $etiqueta=mysqli_query($conn, $sql);
+                $area_etiq=mysqli_query($conn, "SELECT * FROM areas");
+                $etiquetas = mysqli_query($conn, "SELECT * FROM etiquetas");
+            if($etiqueta){
+                echo tablaetiquetas($etiquetas, $area_etiq);
+            }else{
+                echo "Error al guardar";
+            }
+        }
+
+    }elseif(isset($data[0]->borrar) && !isset($data[0]->actualizar)){
         $borrar=$data[0]->borrar;
         if($borrar==true){
         $id = $data[0]->id_etiqueta;
@@ -117,28 +137,12 @@ if(isset($_POST['x'])){
                         <select name="area_etiqueta" id="area_etiqueta">
                             '.selectareas($areas, $value['id_area']).'
                         </select>
-                        <button type="button" class="btn-borde" onclick="actualizaretiqueta()">Actualizar</button>
+                        <button type="button" id="'. $value['id_etiqueta'] .'" class="btn-borde" onclick="actualizaretiqueta(this.id)">Actualizar</button>
                     ';
                 }
                 echo $output;
         }
     
-    }elseif(isset($data[0]->actualizar)){
-        $descrip=$data[0]->descrip;
-        $t_estimado=$data[0]->t_estimado;
-        $tipo_t=$data[0]->tipo_t;
-        $area_etiqueta=$data[0]->area_etiqueta;
-        $id=$data[0]->id_etiqueta;
-
-        $sql="UPDATE etiquetas SET id_area='{$area_etiqueta}', descrip_etiq='{$descrip}', t_estimado='{$t_estimado}', tipo_t='{$tipo_t}' WHERE id_etiqueta= '{$id}')";
-        $etiqueta=mysqli_query($conn, $sql);
-        $area_etiq=mysqli_query($conn, "SELECT * FROM areas");
-        $etiquetas = mysqli_query($conn, "SELECT * FROM etiquetas");
-        if($etiqueta){
-            echo tablaetiquetas($etiquetas, $area_etiq);
-        }else{
-            echo "Error al guardar";
-        }
     }
 }
 }else{
@@ -220,7 +224,7 @@ function mostrartablagrupos($grupos){
 }
 
 function selectareas($areas, $id){
-
+    $output="";
     foreach($areas as $value){
         if($value['id_area']==$id){
             $output = '<option value="' . $value['id_area'] .'" selected disabled>'.$value['n_area'].'</option>';

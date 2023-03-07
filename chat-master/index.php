@@ -30,8 +30,8 @@ if (!isset($_SESSION['unique_id'])) {
           </div>
         </div>
         <div class="field input">
-          <label>Correo</label>
-          <input type="text" name="email" placeholder="tucorreo@correo.com" required>
+          <label>Usuario</label>
+          <input type="text" name="username" placeholder="Usuario" required>
         </div>
         <div class="field input">
           <label>Contraseña</label>
