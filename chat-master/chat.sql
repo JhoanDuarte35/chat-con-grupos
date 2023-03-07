@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-03-2023 a las 22:48:58
+-- Tiempo de generación: 07-03-2023 a las 22:53:29
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -37,9 +37,8 @@ CREATE TABLE `areas` (
 --
 
 INSERT INTO `areas` (`id_area`, `n_area`) VALUES
-(216, 'Area 2'),
-(217, 'Area 3'),
-(218, 'Area 4');
+(224, 'Sistemas'),
+(225, 'Area x');
 
 -- --------------------------------------------------------
 
@@ -52,6 +51,43 @@ CREATE TABLE `area_grupo` (
   `id_area` int(11) NOT NULL,
   `id_grupo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `config_generales`
+--
+
+CREATE TABLE `config_generales` (
+  `id_config` int(10) NOT NULL,
+  `t_imgs` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `config_generales`
+--
+
+INSERT INTO `config_generales` (`id_config`, `t_imgs`) VALUES
+(1, 500000);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `empresas`
+--
+
+CREATE TABLE `empresas` (
+  `id_empresa` int(11) NOT NULL,
+  `n_empresa` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `empresas`
+--
+
+INSERT INTO `empresas` (`id_empresa`, `n_empresa`) VALUES
+(1, 'Puntualmente'),
+(2, 'CLAB');
 
 -- --------------------------------------------------------
 
@@ -69,8 +105,32 @@ CREATE TABLE `empresa_grupos` (
 --
 
 INSERT INTO `empresa_grupos` (`id_grupo`, `n_grupo`) VALUES
-(7, 'grupo1'),
-(8, 'Grupo Nuevo');
+(7, 'grupo1');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `etiquetas`
+--
+
+CREATE TABLE `etiquetas` (
+  `id_etiqueta` int(10) NOT NULL,
+  `id_area` int(10) NOT NULL,
+  `descrip_etiq` varchar(500) NOT NULL,
+  `t_estimado` int(3) NOT NULL,
+  `tipo_t` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `etiquetas`
+--
+
+INSERT INTO `etiquetas` (`id_etiqueta`, `id_area`, `descrip_etiq`, `t_estimado`, `tipo_t`) VALUES
+(36, 225, 'Certificaciones laborales', 2, 'horas'),
+(37, 225, 'Desprendibles de nómina', 1, 'horas'),
+(38, 225, 'Plantilla seguridad social (prestación de servicios)', 5, 'horas'),
+(39, 225, 'Solicitud de prestamos internos', 8, 'dias'),
+(40, 224, 'Cambio de diademas', 1, 'horas');
 
 -- --------------------------------------------------------
 
@@ -89,7 +149,9 @@ CREATE TABLE `grupos` (
 --
 
 INSERT INTO `grupos` (`id_grupo`, `ngrupo`, `propietario`) VALUES
-(105, 'Grupo1', 439402045);
+(105, 'Grupo1', 439402045),
+(106, 'Grupo A', 739631376),
+(107, 'Grupo con Andres', 519515490);
 
 -- --------------------------------------------------------
 
@@ -110,7 +172,14 @@ CREATE TABLE `grupo_integrante` (
 INSERT INTO `grupo_integrante` (`id_integrante_grupo`, `id_grupo`, `id_usuario`) VALUES
 (113, 105, 1272492351),
 (114, 105, 931285856),
-(115, 105, 439402045);
+(115, 105, 439402045),
+(116, 106, 718950861),
+(117, 106, 829925637),
+(118, 106, 199019888),
+(119, 106, 1463495958),
+(120, 106, 739631376),
+(121, 107, 478897994),
+(122, 107, 519515490);
 
 -- --------------------------------------------------------
 
@@ -134,7 +203,56 @@ INSERT INTO `log_sesiones` (`id_log`, `id_usuario`, `fecha`, `hora`, `ip`) VALUE
 (75, 439402045, '2023-03-03', '14:52:29', '127.0.0.1'),
 (76, 439402045, '2023-03-03', '16:07:37', '127.0.0.1'),
 (77, 439402045, '2023-03-03', '16:11:32', '127.0.0.1'),
-(78, 439402045, '2023-03-03', '16:32:05', '127.0.0.1');
+(78, 439402045, '2023-03-03', '16:32:05', '127.0.0.1'),
+(79, 439402045, '2023-03-04', '08:22:41', '::1'),
+(80, 439402045, '2023-03-04', '08:36:43', '::1'),
+(81, 439402045, '2023-03-04', '08:38:42', '::1'),
+(82, 439402045, '2023-03-04', '09:51:43', '::1'),
+(83, 439402045, '2023-03-04', '09:58:57', '127.0.0.1'),
+(84, 439402045, '2023-03-04', '10:07:04', '127.0.0.1'),
+(85, 439402045, '2023-03-04', '11:01:55', '::1'),
+(86, 931285856, '2023-03-06', '08:58:54', '::1'),
+(87, 439402045, '2023-03-06', '10:29:25', '127.0.0.1'),
+(88, 439402045, '2023-03-06', '11:50:34', '127.0.0.1'),
+(89, 931285856, '2023-03-06', '12:12:17', '::1'),
+(90, 931285856, '2023-03-06', '15:41:08', '127.0.0.1'),
+(91, 439402045, '2023-03-06', '15:43:16', '127.0.0.1'),
+(92, 439402045, '2023-03-06', '16:45:03', '127.0.0.1'),
+(93, 439402045, '2023-03-07', '07:35:08', '127.0.0.1'),
+(94, 439402045, '2023-03-07', '07:47:30', '127.0.0.1'),
+(95, 439402045, '2023-03-07', '08:08:55', '::1'),
+(96, 439402045, '2023-03-07', '08:50:20', '127.0.0.1'),
+(97, 439402045, '2023-03-07', '09:00:35', '127.0.0.1'),
+(98, 439402045, '2023-03-07', '09:20:44', '127.0.0.1'),
+(99, 931285856, '2023-03-07', '09:21:31', '::1'),
+(100, 439402045, '2023-03-07', '10:21:56', '::1'),
+(101, 439402045, '2023-03-07', '10:24:17', '127.0.0.1'),
+(102, 439402045, '2023-03-07', '10:34:52', '127.0.0.1'),
+(103, 439402045, '2023-03-07', '10:36:29', '127.0.0.1'),
+(104, 439402045, '2023-03-07', '11:31:48', '127.0.0.1'),
+(105, 439402045, '2023-03-07', '11:51:44', '127.0.0.1'),
+(106, 1272492351, '2023-03-07', '12:25:28', '::1'),
+(107, 439402045, '2023-03-07', '12:27:28', '172.16.3.5'),
+(108, 439402045, '2023-03-07', '12:31:58', '127.0.0.1'),
+(109, 439402045, '2023-03-07', '13:49:19', '127.0.0.1'),
+(110, 545464209, '2023-03-07', '14:12:13', '::1'),
+(111, 545464209, '2023-03-07', '14:12:45', '::1'),
+(112, 1069766798, '2023-03-07', '14:14:39', '::1'),
+(113, 380872290, '2023-03-07', '14:16:34', '::1'),
+(114, 1516938660, '2023-03-07', '14:18:11', '172.16.3.5'),
+(115, 545464209, '2023-03-07', '14:59:38', '127.0.0.1'),
+(116, 380872290, '2023-03-07', '15:00:10', '127.0.0.1'),
+(117, 199019888, '2023-03-07', '15:01:35', '127.0.0.1'),
+(118, 380872290, '2023-03-07', '15:04:21', '127.0.0.1'),
+(119, 739631376, '2023-03-07', '15:05:40', '127.0.0.1'),
+(120, 829925637, '2023-03-07', '15:12:52', '172.16.3.5'),
+(121, 739631376, '2023-03-07', '15:15:07', '::1'),
+(122, 199019888, '2023-03-07', '16:31:10', '127.0.0.1'),
+(123, 199019888, '2023-03-07', '16:36:14', '127.0.0.1'),
+(124, 739631376, '2023-03-07', '16:36:28', '::1'),
+(125, 739631376, '2023-03-07', '16:38:28', '::1'),
+(126, 478897994, '2023-03-07', '16:44:19', '::1'),
+(127, 519515490, '2023-03-07', '16:45:18', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -161,7 +279,27 @@ CREATE TABLE `messages` (
 INSERT INTO `messages` (`msg_id`, `incoming_msg_id`, `outgoing_msg_id`, `msg`, `imagen`, `tipo`, `fecha`, `hora`, `ip`) VALUES
 (173, 1272492351, 439402045, 'sad', '', 0, '2023-03-03', '16:27:40', '127.0.0.1'),
 (174, 105, 439402045, 'hey', '', 0, '2023-03-03', '16:31:11', '127.0.0.1'),
-(175, 1272492351, 439402045, '', '1677880036img1.jpg', 1, '2023-03-03', '16:47:16', '127.0.0.1');
+(175, 1272492351, 439402045, '', '1677880036img1.jpg', 1, '2023-03-03', '16:47:16', '127.0.0.1'),
+(176, 1272492351, 439402045, 'hey', '', 0, '2023-03-04', '08:22:49', '::1'),
+(177, 1272492351, 439402045, 'hey', '', 0, '2023-03-06', '07:26:01', '::1'),
+(178, 1272492351, 439402045, 'hey', '', 0, '2023-03-06', '07:47:32', '::1'),
+(179, 105, 439402045, 'hi', '', 0, '2023-03-06', '07:47:45', '::1'),
+(180, 105, 439402045, 'Hola', '', 0, '2023-03-06', '08:08:28', '::1'),
+(181, 105, 931285856, 'hey', '', 0, '2023-03-06', '09:02:11', '::1'),
+(182, 105, 439402045, 'hi', '', 0, '2023-03-07', '08:13:46', '::1'),
+(183, 1272492351, 439402045, 'Hola', '', 0, '2023-03-07', '12:27:38', '172.16.3.5'),
+(184, 1272492351, 439402045, 'Como estas ?', '', 0, '2023-03-07', '12:27:41', '172.16.3.5'),
+(185, 439402045, 1272492351, '', '1678210121img2.jpeg', 1, '2023-03-07', '12:28:41', '::1'),
+(186, 739631376, 829925637, 'Hola Jhoan como estas ?', '', 0, '2023-03-07', '15:13:20', '172.16.3.5'),
+(187, 739631376, 829925637, 'Hoal', '', 0, '2023-03-07', '15:50:33', '172.16.3.5'),
+(188, 718950861, 739631376, 'hey', '', 0, '2023-03-07', '16:07:33', '127.0.0.1'),
+(189, 106, 739631376, 'Hey', '', 0, '2023-03-07', '16:29:55', '::1'),
+(190, 739631376, 199019888, 'hey', '', 0, '2023-03-07', '16:32:21', '127.0.0.1'),
+(191, 199019888, 739631376, '', '1678224758img2.jpeg', 1, '2023-03-07', '16:32:38', '::1'),
+(192, 107, 478897994, 'hey', '', 0, '2023-03-07', '16:45:56', '::1'),
+(193, 107, 519515490, 'hi', '', 0, '2023-03-07', '16:46:05', '127.0.0.1'),
+(194, 478897994, 519515490, 'hi', '', 0, '2023-03-07', '16:46:24', '127.0.0.1'),
+(195, 519515490, 478897994, 'hola', '', 0, '2023-03-07', '16:46:31', '::1');
 
 -- --------------------------------------------------------
 
@@ -191,21 +329,21 @@ CREATE TABLE `users` (
   `unique_id` int(255) NOT NULL,
   `fname` varchar(255) NOT NULL,
   `lname` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `img` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
-  `rol` int(2) NOT NULL
+  `rol` int(2) NOT NULL,
+  `id_empresa` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`user_id`, `unique_id`, `fname`, `lname`, `email`, `password`, `img`, `status`, `rol`) VALUES
-(20, 439402045, 'Jhoan', 'Duarte', 'admin@admin.com', 'c93ccd78b2076528346216b3b2f701e6', '1677675266img1.jpg', 'Disponible', 2),
-(29, 931285856, 'Pepito', 'Perez', 'admin2@admin.com', 'c93ccd78b2076528346216b3b2f701e6', '1677873186img2.jpeg', 'Offline now', 2),
-(30, 1272492351, 'Juan ', 'Perez', 'user@user.com', 'c93ccd78b2076528346216b3b2f701e6', '1677873219img1.jpg', 'Offline now', 1);
+INSERT INTO `users` (`user_id`, `unique_id`, `fname`, `lname`, `username`, `password`, `img`, `status`, `rol`, `id_empresa`) VALUES
+(42, 478897994, 'Andres', 'Moreno', 'andres.moreno', 'c93ccd78b2076528346216b3b2f701e6', 'puntual.png', 'Desconectado', 2, 1),
+(43, 519515490, 'Jhoan', 'Duarte', 'jhoan.duarte', 'c93ccd78b2076528346216b3b2f701e6', 'clab.jpeg', 'Disponible', 2, 2);
 
 --
 -- Índices para tablas volcadas
@@ -218,10 +356,28 @@ ALTER TABLE `areas`
   ADD PRIMARY KEY (`id_area`);
 
 --
+-- Indices de la tabla `config_generales`
+--
+ALTER TABLE `config_generales`
+  ADD PRIMARY KEY (`id_config`);
+
+--
+-- Indices de la tabla `empresas`
+--
+ALTER TABLE `empresas`
+  ADD PRIMARY KEY (`id_empresa`);
+
+--
 -- Indices de la tabla `empresa_grupos`
 --
 ALTER TABLE `empresa_grupos`
   ADD PRIMARY KEY (`id_grupo`);
+
+--
+-- Indices de la tabla `etiquetas`
+--
+ALTER TABLE `etiquetas`
+  ADD PRIMARY KEY (`id_etiqueta`);
 
 --
 -- Indices de la tabla `grupos`
@@ -267,37 +423,55 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `areas`
 --
 ALTER TABLE `areas`
-  MODIFY `id_area` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
+  MODIFY `id_area` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=226;
+
+--
+-- AUTO_INCREMENT de la tabla `config_generales`
+--
+ALTER TABLE `config_generales`
+  MODIFY `id_config` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `empresas`
+--
+ALTER TABLE `empresas`
+  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `empresa_grupos`
 --
 ALTER TABLE `empresa_grupos`
-  MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de la tabla `etiquetas`
+--
+ALTER TABLE `etiquetas`
+  MODIFY `id_etiqueta` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `grupos`
 --
 ALTER TABLE `grupos`
-  MODIFY `id_grupo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id_grupo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT de la tabla `grupo_integrante`
 --
 ALTER TABLE `grupo_integrante`
-  MODIFY `id_integrante_grupo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `id_integrante_grupo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT de la tabla `log_sesiones`
 --
 ALTER TABLE `log_sesiones`
-  MODIFY `id_log` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id_log` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
 -- AUTO_INCREMENT de la tabla `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
+  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
 
 --
 -- AUTO_INCREMENT de la tabla `tareas`
@@ -309,7 +483,7 @@ ALTER TABLE `tareas`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
