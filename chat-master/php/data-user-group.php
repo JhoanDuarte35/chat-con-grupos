@@ -20,7 +20,7 @@
                         <div class="users-list">    
                             <a id="'.$row['unique_id'].'">
                             <div class="content">
-                            <img src="php/images/' . $row['img'] . '" alt="">
+                            <img src="php/images/grupo/' . $row['img'] . '" alt="">
                             <div class="details">
                                 <span>' . $row['fname'] . " " . $row['lname'] . '</span>
                             </div>
@@ -39,7 +39,7 @@
                     <div class="users-list">
                         <a id="'.$row['unique_id'].'">
                         <div class="content">
-                        <img src="php/images/' . $row['img'] . '" alt="">
+                        <img src="php/images/grupo/' . $row['img'] . '" alt="">
                         <div class="details">
                             <span>' . $row['fname'] . " " . $row['lname'] . '</span>
                         </div>
@@ -54,7 +54,7 @@
                         <div class="users-list">    
                             <a id="'.$row['unique_id'].'">
                             <div class="content">
-                            <img src="php/images/' . $row['img'] . '" alt="">
+                            <img src="php/images/grupo/' . $row['img'] . '" alt="">
                             <div class="details">
                                 <span>' . $row['fname'] . " " . $row['lname'] . '</span>
                             </div>

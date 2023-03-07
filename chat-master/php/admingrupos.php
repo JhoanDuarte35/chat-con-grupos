@@ -19,7 +19,7 @@
                     <div class="users-list">
                         <a id="'.$row['id_usuario'].'">
                         <div class="content">
-                        <img src="php/images/' . $row2['img'] . '" alt="">
+                        <img src="php/images/grupo/' . $row2['img'] . '" alt="">
                         <div class="details">
                             <span>' . $row2['fname'] . " " . $row2['lname'] . '</span>
                         </div>

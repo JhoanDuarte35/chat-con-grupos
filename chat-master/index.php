@@ -38,25 +38,24 @@ if (!isset($_SESSION['unique_id'])) {
           <input type="password" name="password" placeholder="Ingresa tu contraseña" required>
           <i class="fas fa-eye"></i>
         </div>
-        <div class="field image">
-          <label>Tu Foto</label>
-          <br>
-          <?php 
-          foreach($sql as $value){
-            $t_img=$value['t_imgs']/1000;?>
-          <span>La imagen debe tener un peso inferior a <?php echo $t_img?> Kb</span>
-          <?php }?>
-          <input id="myFile" type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
-          <div id="errores"></div>
+        <div>
+          <span for="empresa">Empresa: </span>
+          <select class="form-select" name="empresa" id="empresa">
+            <?php 
+            $consulta=mysqli_query($conn, 'SELECT * FROM empresas');
+            foreach($consulta as $empresa){
+            ?>
+            <option value="<?php echo $empresa['id_empresa']?>"><?php echo $empresa['n_empresa']?></option>
+            <?php }?>
+          </select>
         </div>
         <div>
           <label for="selrol">Selecciona un rol: </label>
-          <select name="rol" id="selrol">
+          <select class="form-select" name="rol" id="selrol">
             <option value="1">Usuario</option>
             <option value="2">Admin</option>
           </select>
         </div>
-        <br>
         <?php 
         
         foreach($sql as $value){
@@ -64,7 +63,7 @@ if (!isset($_SESSION['unique_id'])) {
         <input type="text" id="tarchivo" value="<?php echo $value['t_imgs']?>" disabled hidden>
         <?php } ?>
         <label for="area">Area:</label>
-        <select name="area" id="area">
+        <select class="form-select" name="area" id="area">
           <option value="0" selected disabled>Selecciona un area</option>
 
         <?php $areas=mysqli_query($conn, "SELECT * FROM areas");
@@ -73,10 +72,9 @@ if (!isset($_SESSION['unique_id'])) {
           <option value="<?php echo $valor['id_area']?>"><?php echo $valor['n_area']?></option>
           <?php } ?>
         </select>
-        <br>
-        <br>
+   
         <label for="area">Grupo:</label>
-        <select name="area" id="area">
+        <select  class="form-select" name="area" id="area">
           <option value="0" selected disabled>Selecciona un grupo</option>
           <?php $areas=mysqli_query($conn, "SELECT * FROM empresa_grupos");
         foreach($areas as $valor){

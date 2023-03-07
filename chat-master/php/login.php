@@ -6,10 +6,10 @@ date_default_timezone_set('America/Bogota');
 
 include_once "get-ip.php";
 
-$email = mysqli_real_escape_string($conn, $_POST['email']);
+$username = mysqli_real_escape_string($conn, $_POST['username']);
 $password = mysqli_real_escape_string($conn, $_POST['password']);
-if (!empty($email) && !empty($password)) {
-    $sql = mysqli_query($conn, "SELECT * FROM users WHERE email = '{$email}'");
+if (!empty($username) && !empty($password)) {
+    $sql = mysqli_query($conn, "SELECT * FROM users WHERE username = '{$username}'");
     if (mysqli_num_rows($sql) > 0) {
         $row = mysqli_fetch_assoc($sql);
         $user_pass = md5($password);
@@ -34,7 +34,7 @@ if (!empty($email) && !empty($password)) {
             echo "¡Correo electrónico o la contraseña son incorrectos!";
         }
     } else {
-        echo "$email - ¡Este correo electrónico no existe!";
+        echo "$username - ¡Este correo electrónico no existe!";
     }
 } else {
     echo "¡Todos los campos de entrada son obligatorios!";

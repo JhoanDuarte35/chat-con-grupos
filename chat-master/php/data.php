@@ -13,12 +13,12 @@ while ($row = mysqli_fetch_assoc($query)) {
     } else {
         $you = "";
     }
-    ($row['status'] == "Offline now") ? $offline = "offline" : $offline = "";
+    ($row['status'] == "Desconectado") ? $offline = "offline" : $offline = "";
     ($outgoing_id == $row['unique_id']) ? $hid_me = "hide" : $hid_me = "";
 
     $output .= '<a href="chat.php?user_id=' . $row['unique_id'] . '">
                     <div class="content">
-                    <img src="php/images/' . $row['img'] . '" alt="">
+                    <img src="php/images/grupo/' . $row['img'] . '" alt="">
                     <div class="details">
                         <span>' . $row['fname'] . " " . $row['lname'] . '</span>
                         <p>' . $you . $msg . '</p>

@@ -14,8 +14,8 @@ if (isset($_SESSION['unique_id'])) {
       <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
         <div class="error-text"></div>
         <div class="field input">
-          <label>Dirección de Correo Electrónico</label>
-          <input type="text" name="email" placeholder="Ingresa tu Correo Registrado" required>
+          <label>Usuario</label>
+          <input type="text" name="username" placeholder="Ingresa tu Usuario" required>
         </div>
         <div class="field input">
           <label>Contraseña</label>

@@ -67,7 +67,7 @@ if (isset($_SESSION['unique_id'])) {
                 } else {
                     if($row['tipo']!=1){
                     $output .= '<div class="chat incoming">
-                                    <img src="php/images/' . $row['img'] . '" alt="">
+                                    <img src="php/images/grupo/' . $row['img'] . '" alt="">
                                     <div class="details">
                                     <span> ' . $row['fname'] . " " . $row['lname'] . ' </span>
                                         <p>' . $row['msg'] . ' <br> <spam class="horaentra"> ' . formatohora($row['hora']) . '</spam></p>
@@ -75,7 +75,7 @@ if (isset($_SESSION['unique_id'])) {
                                     </div>';
                 }else{
                     $output .= '<div class="chat incoming">
-                                    <img src="php/images/' . $row['img'] . '" alt="">
+                                    <img src="php/images/grupo/' . $row['img'] . '" alt="">
                                     <div class="details">
                                     <div class="img-nombre">
                                     <span> ' . $row['fname'] . " " . $row['lname'] . ' </span>
@@ -148,14 +148,14 @@ if (isset($_SESSION['unique_id'])) {
     } else {
         if($row['tipo']!=1){
             $output .= '<div class="chat incoming">
-                            <img src="php/images/' . $row['img'] . '" alt="">
+                            <img src="php/images/grupo/' . $row['img'] . '" alt="">
                             <div class="details">
                                 <p>' . $row['msg'] . ' <spam class="horaentra"> ' . formatohora($row['hora']) . '</spam></p>
                             </div>
                             </div>';
         }else{
             $output .= '<div class="chat incoming">
-                <img src="php/images/' . $row['img'] . '" alt="">
+                <img src="php/images/grupo/' . $row['img'] . '" alt="">
                 <div class="details">
                 <img id="msimg" src="php/images/chat/' . $row['imagen'] . '" alt="">
                 <spam class="horaentra"> ' . formatohora($row['hora']) . '</spam>
