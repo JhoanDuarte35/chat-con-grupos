@@ -50,13 +50,13 @@ if (isset($_SESSION['unique_id'])) {
                    
                     if($row['tipo']!=1){
                         $output .= '
-                        <div class="chat outgoing">
+                        <div class="chat outgoing" id="'. $row['msg_id'] .'">
                         <div class="details">
                             <p>' . $row['msg'] . ' <br> <spam class="horasali"> ' . formatohora($row['hora']) . '</spam></p>
                         </div>
                         </div>';
                     }else{
-                        $output .= '<div class="chat outgoing">
+                        $output .= '<div class="chat outgoing" id="'. $row['msg_id'] .'">
                         <div class="details">
                             <img id="msimg" src="php/images/chat/' . $row['imagen'] . '" alt="">
                             <br> <spam class="horasali"> ' . formatohora($row['hora']) . '</spam>
@@ -66,7 +66,7 @@ if (isset($_SESSION['unique_id'])) {
                     
                 } else {
                     if($row['tipo']!=1){
-                    $output .= '<div class="chat incoming">
+                    $output .= '<div class="chat incoming" id="'. $row['msg_id'] .'">
                                     <img src="php/images/grupo/' . $row['img'] . '" alt="">
                                     <div class="details">
                                     <span> ' . $row['fname'] . " " . $row['lname'] . ' </span>
@@ -74,7 +74,7 @@ if (isset($_SESSION['unique_id'])) {
                                     </div>
                                     </div>';
                 }else{
-                    $output .= '<div class="chat incoming">
+                    $output .= '<div class="chat incoming" id="'. $row['msg_id'] .'">
                                     <img src="php/images/grupo/' . $row['img'] . '" alt="">
                                     <div class="details">
                                     <div class="img-nombre">
@@ -132,13 +132,13 @@ if (isset($_SESSION['unique_id'])) {
 
     if ($row['outgoing_msg_id'] === $outgoing_id) {
         if($row['tipo']!=1){
-            $output .= '<div class="chat outgoing">
+            $output .= '<div class="chat outgoing" id="'. $row['msg_id'] .'">
                             <div class="details">
                                 <p>' . $row['msg'] . ' <spam class="horasali"> ' . formatohora($row['hora']) . '</spam></p>
                             </div>
                             </div>';
             }else{
-            $output .= '<div class="chat outgoing">
+            $output .= '<div class="chat outgoing" id="'. $row['msg_id'] .'">
                 <div class="details">
                     <img id="msimg" src="php/images/chat/' . $row['imagen'] . '" alt="">
                     <spam class="horasali"> ' . formatohora($row['hora']) . '</spam>
@@ -147,14 +147,14 @@ if (isset($_SESSION['unique_id'])) {
             }
     } else {
         if($row['tipo']!=1){
-            $output .= '<div class="chat incoming">
+            $output .= '<div class="chat incoming" id="'. $row['msg_id'] .'">
                             <img src="php/images/grupo/' . $row['img'] . '" alt="">
                             <div class="details">
                                 <p>' . $row['msg'] . ' <spam class="horaentra"> ' . formatohora($row['hora']) . '</spam></p>
                             </div>
                             </div>';
         }else{
-            $output .= '<div class="chat incoming">
+            $output .= '<div class="chat incoming" id="'. $row['msg_id'] .'">
                 <img src="php/images/grupo/' . $row['img'] . '" alt="">
                 <div class="details">
                 <img id="msimg" src="php/images/chat/' . $row['imagen'] . '" alt="">

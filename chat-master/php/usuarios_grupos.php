@@ -45,7 +45,7 @@
                         </div>
                         </div>
                         <div> 
-                        <button class="btn btn-outline" id="'.$row['unique_id'].'" onclick="borraruser(this.id)"><i class="fa-solid fa-minus"></i></button>
+                        <button class="btn btn-outline-danger" id="'.$row['unique_id'].'" onclick="borraruser(this.id)"><i class="fa-solid fa-minus"></i></button>
                         </div>
                         </a>
                     </div>';    

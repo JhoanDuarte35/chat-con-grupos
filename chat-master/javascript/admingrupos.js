@@ -56,6 +56,25 @@ var idgrupo = urlParams.get('idg');
   xhr.send("id_grupo=" + idgrupo);
   
 
+  function admin(idgrupo){
+        obj = [{ "idgrupo": `${idgrupo}`, "actualizartipo": true }];
+        console.log(obj)
+        dbParam = JSON.stringify(obj);
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "php/admingrupos.php", true);
+      xhr.onload = ()=>{
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+              let data = xhr.response;
+              usersListGroup.innerHTML = data;
+            }
+        }
+      }
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhr.send("x=" + dbParam);
+  }
+
+
   
 
     var arrayborrar=[];

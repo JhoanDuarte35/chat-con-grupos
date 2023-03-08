@@ -53,7 +53,7 @@ if(isset($_POST['actualizar'])){
     
     foreach($data as $value){ 
     
-        $insert_query = mysqli_query($conn, "INSERT INTO grupo_integrante (id_grupo, id_usuario) VALUES ('{$id_grupo}', '{$value}')");
+        $insert_query = mysqli_query($conn, "INSERT INTO grupo_integrante (id_grupo, id_usuario, tipo_u) VALUES ('{$id_grupo}', '{$value}', 'user')");
     }
     echo "Integrantes guardados con exito";
 }

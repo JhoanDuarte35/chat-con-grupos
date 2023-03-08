@@ -55,7 +55,8 @@ if (!isset($_SESSION['unique_id'])) {
       </div>
       <div id="add_labels"></div>
       
-      <form action="#" class="typing-area">
+      <form class="typing-area">
+        <div id="ticket"><i class="fa-solid fa-ticket"></i></div>
         <div id="tarea"><i class="fa-solid fa-list"></i></div>
         <div id="inputima"><a><i class="fa-solid fa-image"></i></a></div>
         <input id="file-input" style="display:none" type="file" name="image" accept="image/png,image/jpeg">
@@ -169,6 +170,47 @@ if (!isset($_SESSION['unique_id'])) {
         </div>
     </div>   
 
+    <!-- modal ticket-->
+
+    <div class="fondo_transparente hola">
+        <div class="modal">
+            <div class="modal_cerrar hola">
+                <span>x</span>
+            </div>
+            <div class="modal_titulo">Crear ticket</div>
+            <div class="modal_mensaje">
+      <form>
+                <br>
+                <span for="area_etiqueta">Area para ver etiqueta: </span>
+                <select name="area_etiqueta" id="area_etiqueta" onchange="areaselect2(this.value)">
+                  <option value="0" selected disabled>Area para ver sus etiquetas </option>
+                  <?php $sql=mysqli_query($conn,"SELECT * FROM areas");
+                  foreach($sql as $value){?>
+                  <option value="<?php echo $value['id_area'] ?>"> <?php echo $value['n_area']?></option>
+                  <?php } ?>
+                </select>
+                    <br>
+                  
+                <span for="etiqueta2">Etiqueta: </span>
+                <select name="tiqueta2" id="etiqueta2">
+                  <!-- Se llenara solo -->
+                </select>
+                <br>
+                <span for="descarptarea">Descripción</span>
+                <textarea class="modaltextarea" name="descriparea" id="descriparea" cols="35" rows="2"></textarea>
+                
+                <div id="mensaje"></div>
+                <div class="modal_botones">
+                <button type="submit" class="boton">Crear Ticket</button>
+                </div>
+      </form>
+            </div>
+            
+        </div>
+    </div>   
+
+    
+
     <script type="text/javascript">
       document.getElementById("tarea").addEventListener("click",function(){
       document.getElementsByClassName("fondo_transparente")[0].style.display="block"
@@ -177,6 +219,16 @@ if (!isset($_SESSION['unique_id'])) {
 
       document.getElementsByClassName("modal_cerrar")[0].addEventListener("click", function(){
       document.getElementsByClassName("fondo_transparente")[0].style.display="none";
+      });
+    </script>
+    <script type="text/javascript">
+      document.getElementById("ticket").addEventListener("click",function(){
+      document.getElementsByClassName("fondo_transparente hola")[0].style.display="block"
+      return false;
+      });
+
+      document.getElementsByClassName("modal_cerrar hola")[0].addEventListener("click", function(){
+      document.getElementsByClassName("fondo_transparente hola")[0].style.display="none";
 })
     </script>
 
