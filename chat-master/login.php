@@ -7,7 +7,8 @@ if (isset($_SESSION['unique_id'])) {
 
 <?php include_once "header.php"; ?>
 
-<body>
+<body id="login-form">
+
   <div class="wrapper">
     <section class="form login">
       <header>Intranet Puntualmente</header>
@@ -29,6 +30,7 @@ if (isset($_SESSION['unique_id'])) {
       <!-- <div class="link">Aún no te has registrado? <a href="index.php">Regístrate acá</a></div> -->
     </section>
   </div>
+  
 
 <!-- Prueba modal -->
 

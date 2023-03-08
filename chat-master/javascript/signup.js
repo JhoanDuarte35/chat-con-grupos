@@ -7,6 +7,10 @@ form.onsubmit = (e)=>{
 }
 
 continueBtn.onclick = ()=>{
+
+  if($('#area').val==0 || $('#grupo').val==0){
+    errorText.html="Son obligatorios todos los campos";
+  }else{
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "php/signup.php", true);
     xhr.onload = ()=>{
@@ -24,10 +28,11 @@ continueBtn.onclick = ()=>{
     }
     let formData = new FormData(form);
     xhr.send(formData);
+  }
 }
 
 // Determinar peso de las imagenes
-
+/*
 timg=document.getElementById('tarchivo').value;
 
 $('#myFile').change( function() {
@@ -46,4 +51,4 @@ $('#myFile').change( function() {
         $('#errores').html("Formato no soportado");
       }
      }
-});
+});*/

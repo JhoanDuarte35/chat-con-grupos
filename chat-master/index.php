@@ -56,15 +56,10 @@ if (!isset($_SESSION['unique_id'])) {
             <option value="2">Admin</option>
           </select>
         </div>
-        <?php 
-        
-        foreach($sql as $value){
-        ?>
-        <input type="text" id="tarchivo" value="<?php echo $value['t_imgs']?>" disabled hidden>
-        <?php } ?>
+  
         <label for="area">Area:</label>
         <select class="form-select" name="area" id="area">
-          <option value="0" selected disabled>Selecciona un area</option>
+          <option value="0" selected >Selecciona un area</option>
 
         <?php $areas=mysqli_query($conn, "SELECT * FROM areas");
         foreach($areas as $valor){
@@ -74,8 +69,8 @@ if (!isset($_SESSION['unique_id'])) {
         </select>
    
         <label for="area">Grupo:</label>
-        <select  class="form-select" name="area" id="area">
-          <option value="0" selected disabled>Selecciona un grupo</option>
+        <select  class="form-select" name="grupo" id="grupo">
+          <option value="0" selected >Selecciona un grupo</option>
           <?php $areas=mysqli_query($conn, "SELECT * FROM empresa_grupos");
         foreach($areas as $valor){
         ?>
@@ -91,7 +86,6 @@ if (!isset($_SESSION['unique_id'])) {
       <div>
       <div class="link"><a href="users.php">Volver</a></div>
       </div>
-      <!-- <div class="link">Ya te has registrado? <a href="login.php">Ingresa desde acá</a></div> -->
     </section>
   </div>
 

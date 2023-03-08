@@ -19,6 +19,17 @@ body{
   background: #8a0808;
   padding: 0 10px;
 }
+
+#hola{
+  display: flex;
+}
+
+#login-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .wrapper{
   background: #fff;
   max-width: 450px;

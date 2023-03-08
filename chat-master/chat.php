@@ -22,6 +22,7 @@ if (!isset($_SESSION['unique_id'])) {
           <div class="details">
           <span><?php echo $row['fname'] . " " . $row['lname'] ?></span>
           <p><?php echo $row['status']; ?></p>
+          
         <?php 
         } else {
           $sql2 = mysqli_query($conn, "SELECT * FROM grupos WHERE id_grupo = {$grupo_id}");

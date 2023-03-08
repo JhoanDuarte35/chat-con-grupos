@@ -10,9 +10,8 @@ if (!isset($_SESSION['unique_id'])) {
 <body>
   <div class="wrapper">
     <section class="users">
-      <header>
+      <header id="hola">
         <div class="content">
-          <div class="hey">
             
          
           <?php
@@ -26,9 +25,10 @@ if (!isset($_SESSION['unique_id'])) {
             <span><?php echo $row['fname'] . " " . $row['lname'] ?></span>
             <p><?php echo $row['status']; ?></p>
           </div>
+          </div>
           <?php if($_SESSION['rol']==2){ ?>
             <div class="dropdown show dropleft hola">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa-solid fa-ellipsis-vertical"></i>
                           </a>
 
@@ -43,7 +43,7 @@ if (!isset($_SESSION['unique_id'])) {
             </div>
           <?php }else{?>
             <div class="dropdown show dropleft hola">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa-solid fa-ellipsis-vertical"></i>
                           </a>
 
@@ -52,8 +52,8 @@ if (!isset($_SESSION['unique_id'])) {
               </div>
             </div>
           <?php }?>
-          </div>
-          </div>
+     
+         
       </header>
         <span class="text">Tus grupos</span>
       <div class="lista-grupos">
