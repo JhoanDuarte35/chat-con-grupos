@@ -66,7 +66,7 @@ setInterval(() =>{
 
 
 
-}, 10000);
+}, 1000);
 
 function scrollToBottom(){
     chatBox.scrollTop = chatBox.scrollHeight;

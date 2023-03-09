@@ -29,8 +29,7 @@ if (!isset($_SESSION['unique_id'])) {
           <?php if($_SESSION['rol']==2){ ?>
             <div class="dropdown show dropleft hola">
               <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa-solid fa-ellipsis-vertical"></i>
-                          </a>
+              <i class="fa-solid fa-ellipsis-vertical"></i></a>
 
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a href="crearGrupos.php" title="Crear Grupos" class="dropdown-item"><i class="fa-solid fa-user-group"></i> Crear Grupos</a>

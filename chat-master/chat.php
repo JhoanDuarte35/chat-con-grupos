@@ -56,10 +56,23 @@ if (!isset($_SESSION['unique_id'])) {
       <div id="add_labels"></div>
       
       <form class="typing-area">
-        <div id="ticket"><i class="fa-solid fa-ticket"></i></div>
-        <div id="tarea"><i class="fa-solid fa-list"></i></div>
-        <div id="inputima"><a><i class="fa-solid fa-image"></i></a></div>
-        <input id="file-input" style="display:none" type="file" name="image" accept="image/png,image/jpeg">
+
+      <div class="dropup show dropleft">
+              <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-paperclip"></i></a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              
+              <div class="btn btn-secondary" id="ticket"><i class="fa-solid fa-ticket"></i><span> Ticket</span></div>
+              <div class="btn btn-secondary" id="tarea"><i class="fa-solid fa-list"></i><span> Tareas</span></div>
+              <div class="btn btn-secondary" id="inputima"><a><i class="fa-solid fa-image"></i></a><span> Imagen</span></div>
+              
+              <input id="file-input" style="display:none" type="file" name="image" accept="image/png,image/jpeg">
+
+              </div>
+            </div>
+
+
+        
         <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $grupo_id; ?>" hidden>
         <input type="text" name="message" class="input-field" placeholder="Escribe tu mensaje aquí..." autocomplete="off">
         <button class="button"><i class="fab fa-telegram-plane"></i></button>
